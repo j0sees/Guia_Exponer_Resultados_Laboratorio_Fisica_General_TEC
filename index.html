@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía para exponer resultados – LFG I</title>
+<meta name="description" content="Lista de chequeo para preparar y ensayar la exposición oral de resultados en el Laboratorio de Física General I, Escuela de Física, TEC.">
+<style>
+  :root {
+    --bg: #f5f7fa;
+    --surface: #ffffff;
+    --surface-2: #eef2f7;
+    --text: #1a1f2b;
+    --muted: #4a5468;
+    --border: #d5dbe5;
+    --accent: #1d4f91;
+    --accent-soft: #e3ecf8;
+    --bad: #a3231a;
+    --bad-bg: #fdf0ee;
+    --good: #0a6b3d;
+    --good-bg: #eaf6ef;
+    --warn-bg: #fff6e0;
+    --warn-border: #e5b544;
+    --done: #0a6b3d;
+    --shadow: 0 1px 3px rgba(20, 30, 50, .08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12161d;
+      --surface: #1b212b;
+      --surface-2: #232b37;
+      --text: #e8ecf2;
+      --muted: #b0b9c8;
+      --border: #344052;
+      --accent: #8fb7ef;
+      --accent-soft: #22324a;
+      --bad: #ff9c90;
+      --bad-bg: #3a2220;
+      --good: #7fd9a6;
+      --good-bg: #1c3428;
+      --warn-bg: #3a3120;
+      --warn-border: #b38a2e;
+      --done: #7fd9a6;
+      --shadow: none;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12161d;
+    --surface: #1b212b;
+    --surface-2: #232b37;
+    --text: #e8ecf2;
+    --muted: #b0b9c8;
+    --border: #344052;
+    --accent: #8fb7ef;
+    --accent-soft: #22324a;
+    --bad: #ff9c90;
+    --bad-bg: #3a2220;
+    --good: #7fd9a6;
+    --good-bg: #1c3428;
+    --warn-bg: #3a3120;
+    --warn-border: #b38a2e;
+    --done: #7fd9a6;
+    --shadow: none;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+  /* Encabezado */
+  header.top {
+    background: var(--accent);
+    color: #fff;
+    padding: 32px 0 28px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) header.top { background: #1d3557; }
+  }
+  :root[data-theme="dark"] header.top { background: #1d3557; }
+  header.top .kicker { font-size: 14px; letter-spacing: .06em; text-transform: uppercase; opacity: .9; margin: 0 0 6px; }
+  header.top h1 { margin: 0 0 6px; font-size: clamp(26px, 5vw, 36px); line-height: 1.2; }
+  header.top p.sub { margin: 0; font-size: 18px; opacity: .95; }
+
+  /* Panel de progreso fijo */
+  .progress-panel {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .progress-panel .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding-top: 10px; padding-bottom: 10px; }
+  .progress-info { flex: 1 1 260px; min-width: 0; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .bar { height: 12px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; overflow: hidden; }
+  .bar > span { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s ease; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  button {
+    font: inherit; font-size: 14px; font-weight: 600;
+    padding: 7px 12px; border-radius: 8px; cursor: pointer;
+    border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
+  }
+  button:hover { border-color: var(--accent); }
+  button:focus-visible, a:focus-visible, summary:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  button.danger { color: var(--bad); }
+
+  /* Índice */
+  nav.toc { margin: 24px 0 8px; }
+  nav.toc h2 { font-size: 15px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 0 0 8px; }
+  nav.toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  nav.toc a {
+    display: inline-block; padding: 4px 10px; border-radius: 999px;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); text-decoration: none; font-size: 14px;
+  }
+  nav.toc a:hover { border-color: var(--accent); }
+  nav.toc a.done::after { content: " ✓"; color: var(--done); font-weight: 700; }
+
+  /* Tarjetas */
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px 20px 16px; margin: 18px 0;
+    box-shadow: var(--shadow);
+  }
+  .card h2 { display: flex; align-items: baseline; gap: 10px; margin: 0 0 12px; font-size: 22px; line-height: 1.3; }
+  .card h2 .num {
+    flex: none; display: inline-grid; place-items: center;
+    width: 32px; height: 32px; border-radius: 8px;
+    background: var(--accent-soft); color: var(--accent); font-size: 17px;
+  }
+  .card h2 .title { flex: 1; }
+  .card h2 .count { flex: none; font-size: 14px; font-weight: 600; color: var(--muted); background: var(--surface-2); border-radius: 999px; padding: 2px 10px; }
+  .card.done h2 .count { background: var(--good-bg); color: var(--done); }
+  .card.done h2 .count::before { content: "✓ "; }
+  .card h3 { font-size: 17px; margin: 18px 0 6px; color: var(--accent); }
+  .intro { color: var(--muted); margin: -4px 0 12px; }
+
+  .info { background: var(--accent-soft); border-color: transparent; }
+  .info ul { margin: 0; padding-left: 20px; }
+  .info li { margin: 4px 0; }
+  .alert { background: var(--warn-bg); border-left: 4px solid var(--warn-border); padding: 10px 14px; border-radius: 6px; margin: 12px 0 4px; }
+
+  /* Lista de chequeo */
+  ul.checklist { list-style: none; margin: 0; padding: 0; }
+  ul.checklist li { border-top: 1px solid var(--border); }
+  ul.checklist li:first-child { border-top: 0; }
+  ul.checklist label { display: flex; gap: 12px; align-items: flex-start; padding: 9px 4px; cursor: pointer; }
+  ul.checklist input { flex: none; width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--accent); cursor: pointer; }
+  ul.checklist input:checked + span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--border); }
+  ul.checklist ul { margin: 4px 0 0; padding-left: 20px; }
+  ul.checklist ul li { border: 0; margin: 2px 0; }
+
+  /* Tablas */
+  .table-wrap { overflow-x: auto; margin: 14px 0 4px; }
+  table { border-collapse: collapse; width: 100%; font-size: 16px; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: var(--surface-2); }
+
+  .terms { background: var(--surface-2); border-radius: 10px; padding: 12px 16px; margin: 0 0 14px; }
+  .terms dl { margin: 0; }
+  .terms dt { font-weight: 700; margin-top: 8px; }
+  .terms dt:first-child { margin-top: 0; }
+  .terms dd { margin: 0 0 0 0; }
+
+  /* Ejemplos */
+  details.example { margin: 16px 0 4px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+  details.example > summary {
+    cursor: pointer; padding: 10px 14px; font-weight: 600; color: var(--accent);
+    list-style: none; display: flex; gap: 8px; align-items: center;
+  }
+  details.example > summary::-webkit-details-marker { display: none; }
+  details.example > summary::before { content: "▸"; display: inline-block; transition: transform .15s; }
+  details.example[open] > summary::before { transform: rotate(90deg); }
+  .ex-body { padding: 0 14px 14px; }
+  .ex-body .q { margin: 0 0 10px; font-style: italic; }
+  .bad, .good { border-radius: 8px; padding: 10px 14px; margin: 8px 0; border-left: 5px solid; }
+  .bad { background: var(--bad-bg); border-color: var(--bad); }
+  .good { background: var(--good-bg); border-color: var(--good); }
+  .bad .tag, .good .tag { display: block; font-weight: 700; font-size: 15px; margin-bottom: 2px; }
+  .bad .tag { color: var(--bad); }
+  .good .tag { color: var(--good); }
+  .bad p, .good p { margin: 0; }
+  .stage { color: var(--muted); font-style: italic; }
+  body.hide-examples details.example { display: none; }
+
+  .slide-mock { border: 2px solid var(--border); border-radius: 6px; background: var(--surface); padding: 10px 14px; margin-top: 6px; }
+  .slide-mock strong { display: block; margin-bottom: 6px; }
+  .slide-mock .box { border: 2px solid var(--good); border-radius: 4px; padding: 6px 10px; }
+
+  footer { color: var(--muted); font-size: 14px; padding: 24px 0 40px; border-top: 1px solid var(--border); margin-top: 28px; }
+  footer p { margin: 6px 0; }
+  footer a { color: var(--accent); }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; }
+    .card { padding: 16px 14px 12px; }
+    .card h2 { font-size: 19px; flex-wrap: wrap; }
+    .progress-panel { position: static; }
+    html { scroll-padding-top: 10px; }
+  }
+
+  @media print {
+    .progress-panel .actions, nav.toc { display: none; }
+    .progress-panel { position: static; box-shadow: none; }
+    body { background: #fff; color: #000; font-size: 12pt; }
+    .card { break-inside: avoid-page; box-shadow: none; }
+    body.hide-examples details.example { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <p class="kicker">Escuela de Física · TEC · Laboratorio de Física General I</p>
+    <h1>Guía para exponer resultados</h1>
+    <p class="sub">Lista de chequeo para preparar y ensayar su exposición, con ejemplos de las prácticas del curso</p>
+  </div>
+</header>
+
+<div class="progress-panel">
+  <div class="wrap">
+    <div class="progress-info">
+      <div class="progress-label"><span>Progreso</span><span id="total-label" aria-live="polite">0/0 · 0 %</span></div>
+      <div class="bar" role="progressbar" aria-label="Progreso de la lista de chequeo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar"><span id="bar-fill"></span></div>
+    </div>
+    <div class="actions">
+      <button type="button" id="btn-examples" aria-pressed="false">Ocultar ejemplos</button>
+      <button type="button" id="btn-export">Exportar progreso</button>
+      <button type="button" id="btn-print">Imprimir</button>
+      <button type="button" id="btn-clear" class="danger">Limpiar todo</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <nav class="toc" aria-label="Secciones">
+    <h2>Secciones</h2>
+    <ol id="toc"></ol>
+  </nav>
+
+  <!-- ============ 0 ============ -->
+  <section class="card info" id="s0" data-title="Antes de empezar">
+    <h2><span class="num">0</span><span class="title">Antes de empezar: lo que pide la consigna</span></h2>
+    <p><strong>Cómo usar esta guía:</strong> revísela mientras arma las diapositivas y otra vez al ensayar. Marque cada casilla solo cuando la cumpla. Su progreso se guarda en este navegador. Los ejemplos usan datos ilustrativos de las prácticas 1, 2 y 3.</p>
+    <ul>
+      <li>El equipo tiene <strong>máximo 10 minutos</strong>, unos <strong>3 minutos por persona</strong>.</li>
+      <li>Al final hay <strong>preguntas</strong> del público o de la persona docente.</li>
+      <li>El público es <strong>experto</strong>: no explique conceptos básicos (por ejemplo, qué es la energía cinética).</li>
+      <li>Partes obligatorias: <strong>objetivos</strong>, <strong>método</strong> (síntesis), <strong>resultados y análisis</strong>, y <strong>conclusiones y recomendaciones</strong>.</li>
+    </ul>
+    <p class="alert"><strong>Importante:</strong> la presentación digital es un apoyo, no un guion. Si una persona basa la mayor parte de su exposición en leer la presentación u otro material, recibe la calificación mínima.</p>
+  </section>
+
+  <!-- ============ 1 ============ -->
+  <section class="card" id="s1" data-title="Estructura y reparto">
+    <h2><span class="num">1</span><span class="title">Estructura de la exposición y reparto entre personas</span><span class="count"></span></h2>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>El orden es: <strong>objetivo → cómo se midió → qué se obtuvo → qué significa → conclusión</strong>.</span></label></li>
+      <li><label><input type="checkbox"><span>Cada objetivo que se presenta al inicio tiene un resultado que lo responde más adelante.</span></label></li>
+      <li><label><input type="checkbox"><span>No se muestran resultados que no respondan a ningún objetivo.</span></label></li>
+      <li><label><input type="checkbox"><span>El tiempo está repartido de forma equilibrada (unos 3 min por persona) y el total no pasa de 10 min.</span></label></li>
+      <li><label><input type="checkbox"><span>Cada persona sabe exactamente qué partes le tocan y qué diapositivas usa.</span></label></li>
+      <li><label><input type="checkbox"><span>Cada persona abre su parte retomando en una frase lo que dijo la persona anterior.</span></label></li>
+      <li><label><input type="checkbox"><span>Cada persona cierra su parte con una frase que da paso a la siguiente.</span></label></li>
+      <li><label><input type="checkbox"><span>Todas las personas conocen la práctica completa, no solo su parte, porque las preguntas pueden ir a cualquiera.</span></label></li>
+      <li><label><input type="checkbox"><span>La exposición termina con un cierre claro, no con “eso sería todo”.</span></label></li>
+    </ul>
+
+    <h3>Reparto sugerido</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Persona</th><th scope="col">Tiempo</th><th scope="col">Qué expone</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>≈ 3 min</td><td>Tema, objetivos y método (esquema y supuestos)</td></tr>
+          <tr><td>2</td><td>≈ 3,5 min</td><td>Resultados principales: tablas, gráficas, valores obtenidos y su interpretación</td></tr>
+          <tr><td>3</td><td>≈ 3,5 min</td><td>Comparación con la teoría, fuentes de error, conclusiones y recomendaciones</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="intro" style="margin-top:8px">Si los resultados son muy extensos, las personas 2 y 3 pueden dividírselos.</p>
+
+    <details class="example">
+      <summary>Ejemplo: transición entre personas (Práctica 3)</summary>
+      <div class="ex-body">
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>“Bueno, eso es todo lo mío, ahora sigue mi compañera.”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“Con este montaje obtuvimos cinco tiempos de caída para cada masa. Ahora Ana les mostrará qué momento de inercia se obtiene con esos datos.”</p></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 2 ============ -->
+  <section class="card" id="s2" data-title="Objetivos">
+    <h2><span class="num">2</span><span class="title">Cómo exponer los objetivos</span><span class="count"></span></h2>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>Diga el objetivo general en una sola frase y con sus palabras. No lo lea de la diapositiva.</span></label></li>
+      <li><label><input type="checkbox"><span>Mencione qué magnitud se determinó y con qué se comparó.</span></label></li>
+      <li><label><input type="checkbox"><span>Presente solo los objetivos específicos para los que va a mostrar un resultado.</span></label></li>
+      <li><label><input type="checkbox"><span>Los objetivos de la diapositiva coinciden con las conclusiones del final.</span></label></li>
+      <li><label><input type="checkbox"><span>Esta parte dura menos de 1 minuto.</span></label></li>
+    </ul>
+    <details class="example">
+      <summary>Ejemplo: presentar el objetivo (Práctica 2)</summary>
+      <div class="ex-body">
+        <div class="bad"><span class="tag">✗ Evite esto</span><p><span class="stage">(Leyendo la diapositiva)</span> “El objetivo general es estudiar cualitativa y cuantitativamente la Ley de Conservación de la Energía Mecánica en un sistema mecánico sencillo…”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“Queremos comprobar si la energía mecánica de un carrito que baja por una pista inclinada se mantiene constante. Para eso calculamos su energía cinética y su energía potencial en cinco posiciones y vimos cuánto cambia la suma.”</p></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 3 ============ -->
+  <section class="card" id="s3" data-title="Método">
+    <h2><span class="num">3</span><span class="title">Cómo exponer el método (síntesis)</span><span class="count"></span></h2>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>Muestre un <strong>esquema o dibujo del montaje</strong> con las partes rotuladas, no una foto sin rótulos.</span></label></li>
+      <li><label><input type="checkbox"><span>Señale en el esquema qué magnitud se midió con cada instrumento (por ejemplo: fotocelda → tiempo).</span></label></li>
+      <li><label><input type="checkbox"><span>Diga los <strong>supuestos del modelo</strong>, es decir, las condiciones ideales que la teoría da por ciertas:
+        <ul>
+          <li><strong>P1:</strong> resistencia del aire despreciable y gravedad constante.</li>
+          <li><strong>P2:</strong> sin fuerzas disipativas, rodamiento sin deslizamiento y salida desde el reposo.</li>
+          <li><strong>P3:</strong> sin fricción en el eje, cuerda que no resbala, grosor de la cuerda despreciable y salida desde el reposo.</li>
+        </ul></span></label></li>
+      <li><label><input type="checkbox"><span>Diga cuántas repeticiones se hicieron y para qué sirven (estimar la incertidumbre).</span></label></li>
+      <li><label><input type="checkbox"><span>Muestre solo la ecuación que conecta lo que midió con lo que calculó.</span></label></li>
+      <li><label><input type="checkbox"><span>No narre el procedimiento paso a paso ni deduzca ecuaciones.</span></label></li>
+      <li><label><input type="checkbox"><span>Esta parte dura como máximo 1,5 minutos.</span></label></li>
+    </ul>
+    <details class="example">
+      <summary>Ejemplo: sintetizar el método (Práctica 3)</summary>
+      <div class="ex-body">
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>“Primero medimos la polea con el vernier, después pusimos la prensa en la mesa, luego colocamos la varilla, después conectamos el Smart Timer en <em>two gates</em>…”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p><span class="stage">(Señalando el esquema)</span> “Una masa colgante cae desde el reposo una altura de 1,40 m y hace girar la polea. Un fotosensor y un sensor de impacto miden el tiempo de caída. Repetimos cinco veces con cinco masas entre 60 g y 120 g. Suponemos que no hay fricción en el eje y que la cuerda no resbala. Con eso, la ecuación 15 da el momento de inercia a partir de <em>m</em>, <em>t</em>, <em>H</em> y <em>R</em><sub>1</sub>.”</p></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 4 ============ -->
+  <section class="card" id="s4" data-title="Tablas">
+    <h2><span class="num">4</span><span class="title">Cómo exponer una tabla</span><span class="count"></span></h2>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>Muestre solo resultados procesados. Los datos crudos, como los 10 tiempos de cada posición, no van.</span></label></li>
+      <li><label><input type="checkbox"><span>Diga qué contiene cada columna y en qué unidades.</span></label></li>
+      <li><label><input type="checkbox"><span>Indique dónde mirar: resalte con un recuadro la fila o la columna clave.</span></label></li>
+      <li><label><input type="checkbox"><span>No lea todos los valores. Mencione uno o dos y diga qué tendencia o comparación muestran.</span></label></li>
+      <li><label><input type="checkbox"><span>Todos los valores tienen incertidumbre y cifras significativas coherentes.</span></label></li>
+      <li><label><input type="checkbox"><span>Termine diciendo qué significa la tabla o qué decisión permite tomar.</span></label></li>
+    </ul>
+    <details class="example">
+      <summary>Ejemplo: explicar una tabla (Práctica 2)</summary>
+      <div class="ex-body">
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>“En la tabla tenemos 0,40 m, 0,50 m, 0,60 m… y la rapidez es 0,4123, 0,5871, 0,6630…”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“La Tabla 2 compara la rapidez del carrito medida de dos formas: directa, con la fotocelda, e indirecta, con la ecuación 8. Fíjense en la columna resaltada: la incertidumbre del método directo es unas cinco veces menor en todas las posiciones. Por eso usamos la rapidez directa para calcular la energía cinética.”</p></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 5 ============ -->
+  <section class="card" id="s5" data-title="Gráficas">
+    <h2><span class="num">5</span><span class="title">Cómo describir e interpretar una gráfica</span><span class="count"></span></h2>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>Diga qué magnitud hay en cada eje y en qué unidades.</span></label></li>
+      <li><label><input type="checkbox"><span>Diga qué representa cada punto (por ejemplo, el promedio de cinco mediciones) y qué son las barras de incertidumbre, si las hay.</span></label></li>
+      <li><label><input type="checkbox"><span>Diga qué es la curva: qué tipo de ajuste se usó y por qué. La razón debe ser que el modelo teórico predice esa forma.</span></label></li>
+      <li><label><input type="checkbox"><span>Describa la tendencia: aumenta, disminuye, se mantiene constante, es lineal o es cuadrática.</span></label></li>
+      <li><label><input type="checkbox"><span>Explique qué significa físicamente cada parámetro del ajuste, con sus unidades.</span></label></li>
+      <li><label><input type="checkbox"><span>Compare la ecuación empírica (la del ajuste) con la teórica, término por término.</span></label></li>
+      <li><label><input type="checkbox"><span>No use el R² como única prueba. El <strong>coeficiente de determinación R²</strong> indica qué tan bien sigue la curva a los puntos. Un R² cercano a 1 no significa que los parámetros coincidan con la teoría.</span></label></li>
+      <li><label><input type="checkbox"><span>Señale con el puntero o la mano la parte de la gráfica de la que está hablando.</span></label></li>
+    </ul>
+    <details class="example">
+      <summary>Ejemplo: describir la gráfica de la trayectoria (Práctica 1)</summary>
+      <div class="ex-body">
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>“Aquí está la gráfica. Como pueden ver, es una parábola y el R² es 0,998, entonces está bien.”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“La Figura 3 muestra la altura <em>y</em> del balín, en centímetros, en función de la distancia horizontal <em>x</em>, también en centímetros. Cada punto es el promedio de cinco impactos en la tabla de madera. La curva es un ajuste polinomial de grado 2, porque la ecuación 5 predice que <em>y</em> depende de <em>x</em>². Los puntos siguen la parábola (R² = 0,998). El término independiente, 24,6 cm, corresponde a la altura de lanzamiento. El coeficiente de <em>x</em>, 0,688, es la tangente del ángulo, lo que da α = 34,5°. Ambos difieren menos de 2 % de los valores medidos directamente: 25,0 cm y 35°.”</p></div>
+      </div>
+    </details>
+    <details class="example">
+      <summary>Ejemplo breve: significado de los parámetros (Práctica 3)</summary>
+      <div class="ex-body">
+        <p>En la gráfica de <em>y</em> = 1/<em>m</em> contra <em>x</em> = <em>t</em>², la pendiente vale <em>gR</em><sub>1</sub>²/(2<em>HI</em>) y el intercepto vale −<em>R</em><sub>1</sub>²/<em>I</em>. Diga cuál de los dos usó para obtener <em>I</em> y por qué.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 6 ============ -->
+  <section class="card" id="s6" data-title="Magnitudes">
+    <h2><span class="num">6</span><span class="title">Cómo comunicar una magnitud</span><span class="count"></span></h2>
+    <div class="terms">
+      <dl>
+        <dt>Incertidumbre</dt>
+        <dd>El intervalo de duda de <em>su</em> medición. Se debe a la resolución de los instrumentos y a la variación entre repeticiones. Se escribe con ±.</dd>
+        <dt>Error (porcentaje de error)</dt>
+        <dd>Cuánto se aleja su valor del valor de referencia: |experimental − referencia| / referencia × 100 %.</dd>
+        <dt>Discrepancia</dt>
+        <dd>La diferencia |experimental − referencia|. Si es menor que la incertidumbre combinada, los dos valores son <strong>compatibles</strong>.</dd>
+        <dt>Cifras significativas</dt>
+        <dd>Los dígitos que tienen sentido según la incertidumbre.</dd>
+      </dl>
+    </div>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>Reporte la magnitud como <strong>(valor ± incertidumbre) unidad</strong>.</span></label></li>
+      <li><label><input type="checkbox"><span>La incertidumbre tiene 1 o 2 cifras significativas, y el valor está redondeado en la misma posición decimal.</span></label></li>
+      <li><label><input type="checkbox"><span>El valor y la incertidumbre usan la misma potencia de diez y la misma unidad.</span></label></li>
+      <li><label><input type="checkbox"><span>Diga la unidad en voz alta.</span></label></li>
+      <li><label><input type="checkbox"><span>Mencione el valor de referencia y de dónde sale (la geometría de la polea, la <em>g</em> local o una medición directa).</span></label></li>
+      <li><label><input type="checkbox"><span>Dé el porcentaje de error con pocas cifras (por ejemplo, 7,3 %, no 7,4771 %).</span></label></li>
+      <li><label><input type="checkbox"><span>Diga qué significa la comparación: si los valores son compatibles con su incertidumbre o no.</span></label></li>
+      <li><label><input type="checkbox"><span>Diga el resultado completo una vez. Después puede referirse a él como “el valor experimental”.</span></label></li>
+    </ul>
+    <details class="example">
+      <summary>Ejemplo: comunicar el momento de inercia (Práctica 3)</summary>
+      <div class="ex-body">
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>“Nos dio una inercia de 0,00001923847 y la teórica es 0,0000179, o sea, un error de 7,4771 %, que es bajito, así que está bien.”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“El momento de inercia experimental es (1,92 ± 0,03) × 10⁻⁵ kg·m². El valor de referencia, calculado con la geometría de la polea, es (1,79 ± 0,02) × 10⁻⁵ kg·m². El porcentaje de error es 7,3 %. La diferencia, 0,13 × 10⁻⁵ kg·m², es unas tres veces mayor que la incertidumbre combinada, así que no se explica solo por la incertidumbre de las mediciones: hay un efecto que el modelo no considera.”</p></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 7 ============ -->
+  <section class="card" id="s7" data-title="Diferencias con la teoría">
+    <h2><span class="num">7</span><span class="title">Cómo explicar diferencias con la teoría</span><span class="count"></span></h2>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>Nombre fuentes de error <strong>concretas de su montaje</strong>. No use “error humano”, “errores de medición” ni “el equipo estaba malo”.</span></label></li>
+      <li><label><input type="checkbox"><span>Diga en qué dirección afecta cada fuente: si hace el resultado mayor o menor. Compruebe que esa dirección coincide con la de su diferencia.</span></label></li>
+      <li><label><input type="checkbox"><span>Estime cuánto afecta, aunque sea de forma aproximada, usando la ecuación del modelo.</span></label></li>
+      <li><label><input type="checkbox"><span>Distinga la incertidumbre (límite de los instrumentos y variación entre repeticiones) del error sistemático (un supuesto que no se cumple, como la fricción).</span></label></li>
+      <li><label><input type="checkbox"><span>Si la diferencia es menor que la incertidumbre, dígalo así. No hace falta buscar otra causa.</span></label></li>
+      <li><label><input type="checkbox"><span>Si no midió el efecto, preséntelo como hipótesis: “una posible causa es…”.</span></label></li>
+      <li><label><input type="checkbox"><span>Explique bien una o dos causas principales. Es mejor que mencionar cinco sin argumentar.</span></label></li>
+    </ul>
+
+    <h3>Fuentes concretas por práctica (puntos de partida)</h3>
+    <ul>
+      <li><strong>P1:</strong> resistencia del aire, tabla de madera no del todo vertical, cañón que cambia de ángulo después de varios disparos, y el tiempo de la ecuación 9, que supone rapidez horizontal constante.</li>
+      <li><strong>P2:</strong> fricción en las ruedas, energía de rotación de las ruedas (no está incluida en <em>mv</em>²/2), cambio del ángulo de la pista por vibraciones y punto de salida que no siempre es el mismo.</li>
+      <li><strong>P3:</strong> fricción en el eje de la polea, cuerda mal enrollada o con grosor no despreciable, y masa que no parte del reposo o desde la misma altura.</li>
+    </ul>
+
+    <details class="example">
+      <summary>Ejemplo: explicar la diferencia en el momento de inercia (Práctica 3)</summary>
+      <div class="ex-body">
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>“La diferencia se debe a errores humanos y a que los instrumentos no son exactos.”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“Nuestro valor es 7,3 % mayor que el de referencia. La causa más probable es la fricción en el eje de la polea, que el modelo desprecia. La fricción frena la caída: la masa tarda más, y la ecuación 15 interpreta ese tiempo extra como más inercia. Por eso el valor sale mayor, como observamos. Además, el modelo es muy sensible al tiempo. Derivando la ecuación 15 con nuestros datos, un 1 % más en <em>t</em> da cerca de un 6 % más en <em>I</em>. Bastaría un retraso de unos 0,008 s en una caída de 0,63 s para explicar toda la diferencia. En cambio, el grosor de la cuerda haría que <em>I</em> saliera menor, así que no explica este resultado.”</p></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 8 ============ -->
+  <section class="card" id="s8" data-title="Conclusiones">
+    <h2><span class="num">8</span><span class="title">Cómo plantear conclusiones vinculadas a los objetivos</span><span class="count"></span></h2>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>Hay una conclusión por cada objetivo, en el mismo orden en que se presentaron.</span></label></li>
+      <li><label><input type="checkbox"><span>Cada conclusión dice si el objetivo se cumplió y en qué medida.</span></label></li>
+      <li><label><input type="checkbox"><span>Cada conclusión cita el dato que la respalda: un valor, un porcentaje de error, el coeficiente de variación o una figura.</span></label></li>
+      <li><label><input type="checkbox"><span>Las conclusiones dicen qué significan los resultados, sin repetir la tabla.</span></label></li>
+      <li><label><input type="checkbox"><span>No aparecen resultados nuevos.</span></label></li>
+      <li><label><input type="checkbox"><span>Si un objetivo se cumplió solo en parte, se dice y se explica por qué.</span></label></li>
+      <li><label><input type="checkbox"><span>La recomendación es concreta: qué cambiar para reducir la fuente de error principal.</span></label></li>
+    </ul>
+    <details class="example">
+      <summary>Ejemplo: conclusión ligada a un objetivo (Práctica 2)</summary>
+      <div class="ex-body">
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>“En conclusión, se cumplieron todos los objetivos y la energía se conserva, como dice la teoría.”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“Sobre el segundo objetivo: la energía mecánica del carrito se mantuvo prácticamente constante. Su coeficiente de variación fue 1,8 %, menor que el criterio de 5 % de la guía. Por lo tanto, el sistema se comportó como conservativo entre los 30 cm y los 80 cm. Sobre el tercer objetivo: la energía cinética aumentó lo mismo que disminuyó la potencial, dentro de la incertidumbre (Figura 4). Recomendamos fijar mejor la pista para que las vibraciones no cambien su ángulo.”</p></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 9 ============ -->
+  <section class="card" id="s9" data-title="Apoyo visual">
+    <h2><span class="num">9</span><span class="title">Uso del apoyo visual</span><span class="count"></span></h2>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>Hay como máximo unas 8 a 10 diapositivas para 10 minutos (alrededor de una por minuto).</span></label></li>
+      <li><label><input type="checkbox"><span>El texto es breve: palabras clave, sin párrafos, y no más de unas 6 líneas por diapositiva.</span></label></li>
+      <li><label><input type="checkbox"><span>La letra se lee desde el fondo del aula: al menos 24 pt en el texto y 18 pt en los ejes y las leyendas.</span></label></li>
+      <li><label><input type="checkbox"><span>Las gráficas tienen ejes con magnitud y unidad.</span></label></li>
+      <li><label><input type="checkbox"><span>La ecuación del ajuste usa los símbolos de las variables graficadas.</span></label></li>
+      <li><label><input type="checkbox"><span>No quedan textos que Excel pone por defecto, como “Serie1” o “Título del gráfico”.</span></label></li>
+      <li><label><input type="checkbox"><span>Las series se distinguen por <strong>marca y tipo de línea</strong> (círculo, triángulo, línea punteada), no solo por color.</span></label></li>
+      <li><label><input type="checkbox"><span>Hay buen contraste. El rojo y el verde nunca son la única diferencia entre series.</span></label></li>
+      <li><label><input type="checkbox"><span>En cada tabla, el valor importante está resaltado con un recuadro.</span></label></li>
+      <li><label><input type="checkbox"><span>Las figuras y las tablas están numeradas para decir “en la Figura 3”. Las diapositivas también, para ubicarlas rápido en las preguntas.</span></label></li>
+      <li><label><input type="checkbox"><span>Las imágenes que no son propias indican su fuente.</span></label></li>
+      <li><label><input type="checkbox"><span>Al explicar una gráfica, señálela y mire al público, no a la pantalla.</span></label></li>
+      <li><label><input type="checkbox"><span><strong>No lea la diapositiva.</strong> Si lo que va a decir ya está escrito completo en ella, sobra texto.</span></label></li>
+    </ul>
+    <details class="example">
+      <summary>Ejemplo: diapositiva de un resultado (Práctica 3)</summary>
+      <div class="ex-body">
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>Un párrafo como “Se obtuvo que el momento de inercia de la polea mediante el método estadístico fue de 1,92E-05 kg m^2 con una incertidumbre de…”, junto a un gráfico de Excel con la leyenda “Serie1”.</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span>
+          <div class="slide-mock">
+            <strong>Momento de inercia: experimental vs. referencia</strong>
+            <div class="box">
+              <em>I</em><sub>exp</sub> = (1,92 ± 0,03) × 10⁻⁵ kg·m²<br>
+              <em>I</em><sub>ref</sub> = (1,79 ± 0,02) × 10⁻⁵ kg·m²<br>
+              Error: 7,3 %
+            </div>
+          </div>
+          <p style="margin-top:6px">La explicación la da usted en voz alta.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 10 ============ -->
+  <section class="card" id="s10" data-title="Ensayo y consejos">
+    <h2><span class="num">10</span><span class="title">Ensayo y consejos para una buena exposición</span><span class="count"></span></h2>
+
+    <h3>Preparación y lectura</h3>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>Prepare un guion con palabras clave para su parte, no un texto completo para memorizar.</span></label></li>
+      <li><label><input type="checkbox"><span>Haga la prueba sin diapositivas: si puede explicar su parte sin mirarlas, no las va a leer.</span></label></li>
+      <li><label><input type="checkbox"><span>Memorice solo la primera y la última frase de su parte.</span></label></li>
+      <li><label><input type="checkbox"><span>Ensaye en voz alta al menos dos veces por su cuenta y una vez con todo el equipo.</span></label></li>
+    </ul>
+
+    <h3>Muletillas</h3>
+    <p class="intro">Palabras o sonidos que se repiten sin aportar nada: “eh”, “este”, “o sea”, “digamos”, “¿verdad?”.</p>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>Grábese en un ensayo y cuente cuántas muletillas usa.</span></label></li>
+      <li><label><input type="checkbox"><span>Cuando sienta que viene una, haga una pausa en silencio de 1 o 2 segundos. Una pausa se percibe como seguridad.</span></label></li>
+      <li><label><input type="checkbox"><span>Use frases cortas, con una idea por frase. Así hay menos espacios para rellenar.</span></label></li>
+    </ul>
+
+    <h3>Argumentación y lenguaje</h3>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>Respalde cada afirmación con un dato: no diga “es menor”, diga “es 3 % menor”.</span></label></li>
+      <li><label><input type="checkbox"><span>Use el término técnico correcto: “momento de inercia”, no “la inercia esa”; “rapidez”, no “velocidad”, cuando se habla solo de la magnitud.</span></label></li>
+    </ul>
+
+    <h3>Tiempo</h3>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>El ensayo con todo el equipo se cronometró y duró como máximo 9 minutos, para dejar margen.</span></label></li>
+      <li><label><input type="checkbox"><span>Cada persona sabe qué omitir si va atrasada.</span></label></li>
+      <li><label><input type="checkbox"><span>Si se atrasa, recorte su propia parte y no el tiempo de la siguiente persona.</span></label></li>
+      <li><label><input type="checkbox"><span>El equipo acordó una señal discreta para avisar a quien se está pasando del tiempo.</span></label></li>
+    </ul>
+
+    <h3>Durante la exposición</h3>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>Hable hacia el público, con volumen suficiente para el fondo del aula, y mantenga contacto visual.</span></label></li>
+      <li><label><input type="checkbox"><span>Mientras exponen sus compañeros, permanezca atento: sin celular y sin revisar sus notas.</span></label></li>
+      <li><label><input type="checkbox"><span>La presentación se probó en el equipo del aula y hay una copia en PDF de respaldo.</span></label></li>
+    </ul>
+
+    <details class="example">
+      <summary>Ejemplo: inicio de una intervención</summary>
+      <div class="ex-body">
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>“Eh… bueno, este, entonces aquí, eh, tenemos la gráfica…”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p><span class="stage">(Pausa de un segundo, mirando al público)</span> “La Figura 3 muestra la altura del balín en función de la distancia horizontal.”</p></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 11 ============ -->
+  <section class="card" id="s11" data-title="Preguntas">
+    <h2><span class="num">11</span><span class="title">Cómo responder preguntas</span><span class="count"></span></h2>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>Escuche la pregunta completa sin interrumpir y tómese 2 o 3 segundos para pensar.</span></label></li>
+      <li><label><input type="checkbox"><span>Si no la entendió, pida que la repitan o reformúlela: “¿Se refiere a…?”.</span></label></li>
+      <li><label><input type="checkbox"><span>En la primera frase, responda directamente (sí o no, el valor, la causa). Después justifique.</span></label></li>
+      <li><label><input type="checkbox"><span>Apóyese en sus resultados: vuelva a la diapositiva o la tabla que corresponde.</span></label></li>
+      <li><label><input type="checkbox"><span>Si no sabe la respuesta, dígalo con honestidad y ofrezca lo que sí sabe o cómo lo averiguaría. No invente.</span></label></li>
+      <li><label><input type="checkbox"><span>Responda en un minuto o menos.</span></label></li>
+      <li><label><input type="checkbox"><span>El equipo preparó respuestas para preguntas probables: por qué ese ajuste, por qué ese método, cuál fue la fuente de error principal y qué cambiarían.</span></label></li>
+    </ul>
+    <details class="example">
+      <summary>Ejemplo: responder una pregunta (Práctica 2)</summary>
+      <div class="ex-body">
+        <p class="q">Pregunta: “¿Por qué usaron la rapidez directa y no la indirecta?”</p>
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>“Eh… porque así lo decía la guía, creo.”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“Porque es más precisa. En la Tabla 2, la incertidumbre de la rapidez directa es 0,004 m/s y la de la indirecta es 0,02 m/s. Así, la energía cinética también queda con menor incertidumbre.”</p></div>
+        <div class="good"><span class="tag">✓ Si no lo sabe</span><p>“No lo medimos, así que no podemos asegurarlo. Nuestra hipótesis es que…, y se podría comprobar…”</p></div>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ 12 ============ -->
+  <section class="card info" id="s12" data-title="Qué se evaluará">
+    <h2><span class="num">12</span><span class="title">Qué se evaluará</span></h2>
+    <p>En la exposición se valorará <strong>de forma individual</strong> cómo comunica cada persona su parte, sin importar qué sección le haya tocado. Se tomará en cuenta la fluidez, la claridad, el orden y la calidad de la argumentación, es decir, que sus afirmaciones se apoyen en datos. También cuentan el manejo del tiempo, el uso del apoyo visual sin leerlo y la respuesta a las preguntas. Además, se pueden valorar aspectos del equipo, como que la exposición tenga la estructura completa y la calidad de las diapositivas.</p>
+    <p>Recuerde que, según la consigna, quien base la mayor parte de su exposición en la lectura recibe la calificación mínima. Los criterios exactos se darán a conocer con la rúbrica.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Basada en la <em>Consigna para la presentación oral de un informe de laboratorio</em> (FI1201, Laboratorio de Física General I), en las guías de las prácticas 1, 2 y 3 y en la <em>Guía básica para la elaboración de un informe de laboratorio tipo artículo</em> (C. A. Jiménez Carballo y J. Sánchez Valle, Escuela de Física, TEC). Los ejemplos numéricos son ilustrativos.</p>
+    <p>Elaborada por Melania Campos Rodríguez y Esteban Pérez Hidalgo · Escuela de Física, Instituto Tecnológico de Costa Rica · 2026 · Versión en revisión.</p>
+    <p>Licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" rel="license noopener" target="_blank">CC BY-NC-SA 4.0</a>.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var KEY = 'guia-exponer-resultados-lfg1-v1';
+  var KEY_EX = KEY + '-ocultar-ejemplos';
+
+  function read(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function write(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function remove(k) { try { localStorage.removeItem(k); } catch (e) {} }
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section.card'));
+  var allBoxes = [];
+
+  // Asignar un identificador a cada casilla: id-de-sección + posición
+  sections.forEach(function (sec) {
+    var boxes = sec.querySelectorAll('.checklist > li > label > input[type=checkbox]');
+    Array.prototype.forEach.call(boxes, function (b, i) {
+      b.dataset.id = sec.id + '-' + i;
+      allBoxes.push(b);
+    });
+  });
+
+  // Índice de secciones
+  var toc = document.getElementById('toc');
+  sections.forEach(function (sec) {
+    var num = sec.querySelector('.num').textContent;
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.href = '#' + sec.id;
+    a.textContent = num + '. ' + (sec.dataset.title || '');
+    a.id = 'toc-' + sec.id;
+    li.appendChild(a);
+    toc.appendChild(li);
+  });
+
+  // Cargar progreso guardado
+  var saved = {};
+  try { saved = JSON.parse(read(KEY) || '{}') || {}; } catch (e) { saved = {}; }
+  allBoxes.forEach(function (b) { b.checked = !!saved[b.dataset.id]; });
+
+  function save() {
+    var state = {};
+    allBoxes.forEach(function (b) { if (b.checked) state[b.dataset.id] = 1; });
+    write(KEY, JSON.stringify(state));
+  }
+
+  function update() {
+    var total = allBoxes.length, done = 0;
+    sections.forEach(function (sec) {
+      var boxes = sec.querySelectorAll('.checklist > li > label > input[type=checkbox]');
+      if (!boxes.length) return;
+      var c = 0;
+      Array.prototype.forEach.call(boxes, function (b) { if (b.checked) c++; });
+      done += c;
+      var count = sec.querySelector('.count');
+      if (count) count.textContent = c + '/' + boxes.length;
+      var complete = c === boxes.length;
+      sec.classList.toggle('done', complete);
+      var link = document.getElementById('toc-' + sec.id);
+      if (link) link.classList.toggle('done', complete);
+    });
+    var pct = total ? Math.round(done / total * 100) : 0;
+    document.getElementById('total-label').textContent = done + '/' + total + ' · ' + pct + ' %';
+    document.getElementById('bar-fill').style.width = pct + '%';
+    document.getElementById('bar').setAttribute('aria-valuenow', pct);
+  }
+
+  allBoxes.forEach(function (b) {
+    b.addEventListener('change', function () { save(); update(); });
+  });
+  update();
+
+  // Mostrar u ocultar ejemplos
+  var btnEx = document.getElementById('btn-examples');
+  function setExamples(hidden) {
+    document.body.classList.toggle('hide-examples', hidden);
+    btnEx.textContent = hidden ? 'Mostrar ejemplos' : 'Ocultar ejemplos';
+    btnEx.setAttribute('aria-pressed', hidden ? 'true' : 'false');
+  }
+  setExamples(read(KEY_EX) === '1');
+  btnEx.addEventListener('click', function () {
+    var hidden = !document.body.classList.contains('hide-examples');
+    setExamples(hidden);
+    write(KEY_EX, hidden ? '1' : '0');
+  });
+
+  // Limpiar todo
+  document.getElementById('btn-clear').addEventListener('click', function () {
+    if (!window.confirm('¿Desea desmarcar todas las casillas?')) return;
+    allBoxes.forEach(function (b) { b.checked = false; });
+    remove(KEY);
+    update();
+  });
+
+  // Exportar progreso como archivo de texto
+  function clean(t) { return t.replace(/\s+/g, ' ').trim(); }
+  document.getElementById('btn-export').addEventListener('click', function () {
+    var done = allBoxes.filter(function (b) { return b.checked; }).length;
+    var fecha = new Date().toLocaleString('es-CR');
+    var lines = [
+      'Guía para exponer resultados – Laboratorio de Física General I',
+      'Progreso exportado: ' + fecha,
+      'Total: ' + done + '/' + allBoxes.length,
+      ''
+    ];
+    sections.forEach(function (sec) {
+      var boxes = sec.querySelectorAll('.checklist > li > label > input[type=checkbox]');
+      if (!boxes.length) return;
+      var c = 0;
+      Array.prototype.forEach.call(boxes, function (b) { if (b.checked) c++; });
+      lines.push(sec.querySelector('.num').textContent + '. ' + clean(sec.querySelector('.title').textContent) + ' (' + c + '/' + boxes.length + ')');
+      Array.prototype.forEach.call(boxes, function (b) {
+        var span = b.nextElementSibling.cloneNode(true);
+        var sub = span.querySelector('ul');
+        if (sub) sub.remove();
+        lines.push('  [' + (b.checked ? 'x' : ' ') + '] ' + clean(span.textContent));
+      });
+      lines.push('');
+    });
+    var blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'progreso-guia-exposicion.txt';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 0);
+  });
+
+  // Imprimir con los ejemplos abiertos
+  var openedForPrint = [];
+  window.addEventListener('beforeprint', function () {
+    openedForPrint = [];
+    document.querySelectorAll('details.example').forEach(function (d) {
+      if (!d.open) { d.open = true; openedForPrint.push(d); }
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    openedForPrint.forEach(function (d) { d.open = false; });
+  });
+  document.getElementById('btn-print').addEventListener('click', function () { window.print(); });
+})();
+</script>
+</body>
+</html>
