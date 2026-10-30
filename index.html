@@ -213,6 +213,72 @@
     .card { break-inside: avoid-page; box-shadow: none; }
     body.hide-examples details.example { display: block; }
   }
+
+  /* Números de sección con decimales (4.1, 4.2…) */
+  .card h2 .num { width: auto; min-width: 32px; padding: 0 6px; }
+  .card.subhead { background: transparent; border: 0; box-shadow: none; padding: 8px 4px 0; margin-bottom: 0; }
+  .card.subhead .intro { margin: 0; }
+
+  /* Gráficas de ejemplo (SVG) */
+  :root {
+    --chart-frame: #ffffff;
+    --chart-grid: #d9d9d9;
+    --chart-axis: #bfbfbf;
+    --chart-text: #595959;
+    --chart-point: #4472c4;
+    --hl-amarillo: #f2b400;
+    --hl-verde: #1f9d55;
+    --sh-morado: #7030a0;
+    --sh-naranja: #e07b39;
+    --sh-azul: #0096d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --chart-frame: #1b212b;
+      --chart-grid: #344052;
+      --chart-axis: #4a5870;
+      --chart-text: #c9d1dc;
+      --chart-point: #7aa2e8;
+      --hl-verde: #3fcf7f;
+      --sh-morado: #c39bec;
+      --sh-naranja: #f4a26b;
+      --sh-azul: #5cc8f5;
+    }
+  }
+  :root[data-theme="dark"] {
+    --chart-frame: #1b212b;
+    --chart-grid: #344052;
+    --chart-axis: #4a5870;
+    --chart-text: #c9d1dc;
+    --chart-point: #7aa2e8;
+    --hl-verde: #3fcf7f;
+    --sh-morado: #c39bec;
+    --sh-naranja: #f4a26b;
+    --sh-azul: #5cc8f5;
+  }
+  figure.chart { margin: 4px 0 12px; }
+  .chart-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; background: var(--chart-frame); }
+  .chart-scroll svg { display: block; width: 100%; min-width: 560px; height: auto; }
+  figure.chart figcaption { font-size: 15px; color: var(--muted); margin-top: 6px; }
+  .mrua-chart .c-frame { fill: var(--chart-frame); }
+  .mrua-chart .c-grid { stroke: var(--chart-grid); stroke-width: 1.5; }
+  .mrua-chart .c-axis { stroke: var(--chart-axis); stroke-width: 2; }
+  .mrua-chart text { fill: var(--chart-text); font-family: inherit; white-space: pre; }
+  .mrua-chart .c-tick { font-size: 20px; }
+  .mrua-chart .c-label { font-size: 22px; }
+  .mrua-chart .c-title { font-size: 28px; font-weight: 700; }
+  .mrua-chart .c-eq { font-size: 26px; }
+  .mrua-chart .c-cmp { font-size: 36px; fill: var(--text); }
+  .mrua-chart .c-cmp-label { font-size: 24px; }
+  .mrua-chart .c-trend { stroke: var(--chart-point); stroke-width: 3; stroke-dasharray: 1 7; stroke-linecap: round; fill: none; }
+  .mrua-chart .c-point { fill: var(--chart-point); }
+  .mrua-chart .c-hl { fill: none; stroke-width: 6; }
+  .mrua-chart .c-hl.amarillo { stroke: var(--hl-amarillo); }
+  .mrua-chart .c-hl.verde { stroke: var(--hl-verde); }
+  .mrua-chart .c-shape { fill: none; stroke-width: 4; }
+  .mrua-chart .c-shape.morado { stroke: var(--sh-morado); }
+  .mrua-chart .c-shape.naranja { stroke: var(--sh-naranja); }
+  .mrua-chart .c-shape.azul { stroke: var(--sh-azul); }
 </style>
 </head>
 <body>
@@ -280,7 +346,7 @@
         <tbody>
           <tr><td>Objetivos</td><td>≤ 1 min</td></tr>
           <tr><td>Método (esquema y supuestos)</td><td>≤ 1,5 min</td></tr>
-          <tr><td>Resultados y análisis (incluye la comparación con la teoría y las fuentes de error)</td><td>≈ 5 min</td></tr>
+          <tr><td>Resultados y análisis (tablas, gráficas, magnitudes y fuentes de error)</td><td>≈ 5 min</td></tr>
           <tr><td>Conclusiones y recomendaciones</td><td>≈ 1,5 min</td></tr>
         </tbody>
       </table>
@@ -288,10 +354,10 @@
     <p class="intro" style="margin-top:8px">El equipo decide quién expone cada parte, de modo que todas las personas tengan una participación equitativa. El minuto restante es margen.</p>
 
     <details class="example">
-      <summary>Ejemplo: transición entre personas (péndulo simple)</summary>
+      <summary>Ejemplo: transición entre personas (carrito con MRUA)</summary>
       <div class="ex-body">
         <div class="bad"><span class="tag">✗ Evite esto</span><p>“Bueno, eso es todo lo mío, ahora sigue mi compañera.”</p></div>
-        <div class="good"><span class="tag">✓ Mejor así</span><p>“Con este montaje medimos el periodo del péndulo para seis longitudes distintas. Ahora Ana les mostrará qué valor de <em>g</em> se obtiene con esas mediciones.”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“Con este montaje medimos el tiempo de recorrido del carrito entre las fotoceldas y calculamos su promedio. Ahora Ana les mostrará cómo obtuvimos, a partir de esos tiempos, la rapidez y la aceleración del carrito.”</p></div>
       </div>
     </details>
   </section>
@@ -307,10 +373,10 @@
       <li><label><input type="checkbox"><span>Esta parte dura menos de 1 minuto.</span></label></li>
     </ul>
     <details class="example">
-      <summary>Ejemplo: presentar el objetivo (constante de un resorte)</summary>
+      <summary>Ejemplo: presentar el objetivo (carrito con MRUA)</summary>
       <div class="ex-body">
-        <div class="bad"><span class="tag">✗ Evite esto</span><p><span class="stage">(Leyendo la diapositiva)</span> “El objetivo general es determinar experimentalmente la constante elástica de un resorte helicoidal mediante el análisis de la relación entre la fuerza aplicada y la elongación producida…”</p></div>
-        <div class="good"><span class="tag">✓ Mejor así</span><p>“Queremos medir la constante elástica de un resorte de dos formas: con la elongación que producen distintas masas colgantes y con el periodo de oscilación. Al final comparamos los dos valores.”</p></div>
+        <div class="bad"><span class="tag">✗ Evite esto</span><p><span class="stage">(Leyendo la diapositiva)</span> “El objetivo general es estudiar cualitativa y cuantitativamente el movimiento rectilíneo uniformemente acelerado (MRUA) realizado por un cuerpo…”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“Queremos comprobar si un carrito, unido por una cuerda que pasa por una polea ideal a una masa que cuelga, realiza un MRUA. Para eso medimos el tiempo, la rapidez y la aceleración del carrito mientras se desplaza en un riel de baja fricción.”</p></div>
       </div>
     </details>
   </section>
@@ -319,142 +385,174 @@
   <section class="card" id="s3" data-title="Método">
     <h2><span class="num">3</span><span class="title">Cómo exponer el método (síntesis)</span><span class="count"></span></h2>
     <ul class="checklist">
-      <li><label><input type="checkbox"><span>Muestre un <strong>esquema o dibujo del montaje</strong> con las partes rotuladas, no una foto sin rótulos.</span></label></li>
+      <li><label><input type="checkbox"><span>Muestre un <strong>esquema o dibujo del montaje</strong> con las partes rotuladas, no una foto sin rótulos. Puede partir de una foto del montaje tomada durante la práctica, con las partes rotuladas.</span></label></li>
       <li><label><input type="checkbox"><span>Señale en el esquema qué magnitud se midió con cada instrumento (por ejemplo: fotocelda → tiempo).</span></label></li>
-      <li><label><input type="checkbox"><span>Diga los <strong>supuestos del modelo</strong>, es decir, las condiciones ideales que la teoría da por ciertas:
-        <ul>
-          <li><strong>P1:</strong> resistencia del aire despreciable y gravedad constante.</li>
-          <li><strong>P2:</strong> sin fuerzas disipativas, rodamiento sin deslizamiento y salida desde el reposo.</li>
-          <li><strong>P3:</strong> sin fricción en el eje, cuerda que no resbala, grosor de la cuerda despreciable y salida desde el reposo.</li>
-        </ul></span></label></li>
+      <li><label><input type="checkbox"><span>Diga los <strong>supuestos del modelo</strong>, es decir, las condiciones ideales que la teoría da por ciertas.</span></label></li>
       <li><label><input type="checkbox"><span>Diga cuántas repeticiones se hicieron y para qué sirven (estimar la incertidumbre).</span></label></li>
       <li><label><input type="checkbox"><span>Muestre solo la ecuación que conecta lo que midió con lo que calculó.</span></label></li>
       <li><label><input type="checkbox"><span>No narre el procedimiento paso a paso ni deduzca ecuaciones.</span></label></li>
       <li><label><input type="checkbox"><span>Esta parte dura como máximo 1,5 minutos.</span></label></li>
     </ul>
     <details class="example">
-      <summary>Ejemplo: sintetizar el método (péndulo simple)</summary>
+      <summary>Ejemplo: rotular el montaje por partes</summary>
       <div class="ex-body">
-        <div class="bad"><span class="tag">✗ Evite esto</span><p>“Primero amarramos el hilo al soporte, después medimos el hilo con la cinta, luego pusimos la fotocompuerta, después configuramos el Smart Timer…”</p></div>
-        <div class="good"><span class="tag">✓ Mejor así</span><p><span class="stage">(Señalando el esquema)</span> “Una esfera cuelga de un hilo de longitud <em>L</em>, medida desde el punto de suspensión hasta el centro de la esfera. Una fotocompuerta en el punto más bajo mide el periodo <em>T</em>. Medimos cinco periodos para cada una de seis longitudes entre 0,30 m y 0,80 m. El modelo supone amplitud pequeña, hilo inextensible y sin masa, y resistencia del aire despreciable. Con eso, <em>T</em>² = (4π²/<em>g</em>) <em>L</em>.”</p></div>
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>Sobrecargar una sola diapositiva con el esquema y todas sus partes rotuladas a la vez.</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>Use varias diapositivas con el mismo esquema o foto del montaje como base. En cada una, rotule solo las partes de la medición que está explicando. Al pasar a la siguiente medición, esos rótulos desaparecen y aparecen los nuevos.</p></div>
+      </div>
+    </details>
+    <details class="example">
+      <summary>Ejemplo: enunciar los supuestos (carrito con MRUA)</summary>
+      <div class="ex-body">
+        <div class="good"><span class="tag">✓ Así se puede decir</span><p>“Suponemos que no hay fricción en el riel por donde se desplaza el carrito. Además, la polea es ideal: no hay fricción en su eje, la cuerda no resbala y su grosor es despreciable.”</p></div>
+      </div>
+    </details>
+    <details class="example">
+      <summary>Ejemplo: sintetizar el método (carrito con MRUA)</summary>
+      <div class="ex-body">
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>“Primero medimos con la cinta métrica una distancia de 40 cm entre las fotoceldas, luego encendimos el Smart Timer, elegimos la medición de tiempo y de ahí seleccionamos <em>two gates</em>; después hicimos unas pruebas para corroborar que medía el tiempo…”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p><span class="stage">(Señalando el esquema)</span> “Usamos dos fotoceldas conectadas al Smart Timer. La primera se mantuvo fija en <em>x</em> = 30 cm y la segunda se colocó en cinco posiciones, de 40 cm a 80 cm, cada 10 cm. Ajustamos el Smart Timer y la altura de las fotoceldas para que leyeran bien las bandas de la pantalla de interrupción. Así medimos el tiempo, la rapidez y la aceleración del carrito.”</p></div>
       </div>
     </details>
   </section>
 
   <!-- ============ 4 ============ -->
-  <section class="card" id="s4" data-title="Tablas">
-    <h2><span class="num">4</span><span class="title">Cómo exponer una tabla</span><span class="count"></span></h2>
+  <section class="card subhead" id="s4" data-title="Resultados y análisis">
+    <h2><span class="num">4</span><span class="title">Cómo exponer los resultados y su análisis</span></h2>
+    <p class="intro">Es la parte central de la exposición. Incluye las tablas (4.1), las gráficas (4.2), las magnitudes (4.3) y las fuentes de error (4.4).</p>
+  </section>
+
+  <!-- ============ 4.1 ============ -->
+  <section class="card" id="s4-1" data-title="Tablas">
+    <h2><span class="num">4.1</span><span class="title">Cómo describir las tablas</span><span class="count"></span></h2>
     <ul class="checklist">
-      <li><label><input type="checkbox"><span>Muestre solo resultados procesados. Los datos crudos, como los 10 tiempos de cada posición, no van.</span></label></li>
+      <li><label><input type="checkbox"><span>Muestre solo resultados procesados. Los datos crudos, como los 10 tiempos de cada posición, no van. En su lugar, muestre una tabla con las posiciones y sus incertidumbres, y los tiempos promedio con sus incertidumbres totales.</span></label></li>
       <li><label><input type="checkbox"><span>Diga qué contiene cada columna y en qué unidades.</span></label></li>
       <li><label><input type="checkbox"><span>Indique dónde mirar: resalte con un recuadro la fila o la columna clave.</span></label></li>
       <li><label><input type="checkbox"><span>No lea todos los valores. Mencione uno o dos y diga qué tendencia o comparación muestran.</span></label></li>
-      <li><label><input type="checkbox"><span>Todos los valores tienen incertidumbre y cifras significativas coherentes.</span></label></li>
+      <li><label><input type="checkbox"><span>Asegúrese de que todos los valores mostrados tengan incertidumbre y cifras significativas coherentes.</span></label></li>
       <li><label><input type="checkbox"><span>Termine diciendo qué significa la tabla o qué decisión permite tomar.</span></label></li>
     </ul>
     <details class="example">
-      <summary>Ejemplo: explicar una tabla (constante de un resorte)</summary>
+      <summary>Ejemplo: explicar una tabla (carrito con MRUA)</summary>
       <div class="ex-body">
-        <div class="bad"><span class="tag">✗ Evite esto</span><p>“En la tabla tenemos 50 g, 100 g, 150 g… y la elongación es 2,13 cm, 4,28 cm, 6,40 cm…”</p></div>
-        <div class="good"><span class="tag">✓ Mejor así</span><p>“La Tabla 2 compara la constante del resorte obtenida de dos formas: estática, con la elongación que producen las masas colgantes, y dinámica, con el periodo de oscilación. Fíjense en la columna resaltada: la incertidumbre del método dinámico es unas tres veces menor. Por eso tomamos el valor dinámico como resultado principal.”</p></div>
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>“En la tabla tenemos 40 cm, 50 cm, 60 cm… y la rapidez es 56,6127, 62,8714, 68,0602…”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“La Tabla 2 muestra la rapidez promedio del carrito en cada posición de la segunda fotocelda. Fíjense en la columna resaltada: conforme aumenta la posición, también aumenta la rapidez.”</p></div>
       </div>
     </details>
   </section>
 
-  <!-- ============ 5 ============ -->
-  <section class="card" id="s5" data-title="Gráficas">
-    <h2><span class="num">5</span><span class="title">Cómo describir e interpretar una gráfica</span><span class="count"></span></h2>
+  <!-- ============ 4.2 ============ -->
+  <section class="card" id="s4-2" data-title="Gráficas">
+    <h2><span class="num">4.2</span><span class="title">Cómo describir e interpretar una gráfica</span><span class="count"></span></h2>
     <ul class="checklist">
       <li><label><input type="checkbox"><span>Diga qué magnitud hay en cada eje y en qué unidades.</span></label></li>
-      <li><label><input type="checkbox"><span>Diga qué representa cada punto (por ejemplo, el promedio de cinco mediciones) y qué son las barras de incertidumbre, si las hay.</span></label></li>
-      <li><label><input type="checkbox"><span>Diga qué es la curva: qué tipo de ajuste se usó y por qué. La razón debe ser que el modelo teórico predice esa forma.</span></label></li>
-      <li><label><input type="checkbox"><span>Describa la tendencia: aumenta, disminuye, se mantiene constante, es lineal o es cuadrática.</span></label></li>
-      <li><label><input type="checkbox"><span>Explique qué significa físicamente cada parámetro del ajuste, con sus unidades.</span></label></li>
-      <li><label><input type="checkbox"><span>Compare la ecuación empírica (la del ajuste) con la teórica, término por término.</span></label></li>
+      <li><label><input type="checkbox"><span>Diga qué representa cada punto (por ejemplo, el promedio de cinco mediciones).</span></label></li>
+      <li><label><input type="checkbox"><span>Diga qué es la curva: qué tipo de ajuste se usó y por qué; es decir, cuál es la relación teórica entre las variables que llevó a elegir ese ajuste.</span></label></li>
+      <li><label><input type="checkbox"><span>Describa la tendencia: aumenta, disminuye, se mantiene constante, es lineal, cuadrática, polinómica de grado 3, etc.</span></label></li>
+      <li><label><input type="checkbox"><span>Compare la ecuación empírica (la del ajuste) con la teórica, término por término. Use recuadros, flechas, colores u otros elementos para mostrar qué término de una corresponde a cuál de la otra.</span></label></li>
       <li><label><input type="checkbox"><span>No use el R² como única prueba. El <strong>coeficiente de determinación R²</strong> indica qué tan bien sigue la curva a los puntos. Un R² cercano a 1 no significa que los parámetros coincidan con la teoría.</span></label></li>
-      <li><label><input type="checkbox"><span>Señale con el puntero o la mano la parte de la gráfica de la que está hablando.</span></label></li>
+      <li><label><input type="checkbox"><span>Señale con el puntero o la mano la parte de la gráfica de la que está hablando. Por eso conviene que quien expone se ubique cerca de la proyección.</span></label></li>
     </ul>
+
     <details class="example">
-      <summary>Ejemplo: describir una gráfica de posición contra tiempo (carrito con MRUA)</summary>
+      <summary>Ejemplo: comparar la ecuación empírica con la teórica (carrito con MRUA)</summary>
       <div class="ex-body">
+        <figure class="chart">
+          <div class="chart-scroll">
+            <svg viewBox="0 0 1000 560" class="mrua-chart" data-chart="pos" data-highlight="eq:0" data-color="verde" role="img" aria-labelledby="g-pos-t g-pos-d">
+              <title id="g-pos-t">Posición del carrito en función del tiempo, con la ecuación del ajuste resaltada</title>
+              <desc id="g-pos-d">Cinco puntos entre 0,21 s y 0,81 s, con posiciones de 40 a 80 centímetros, que siguen una curva cuadrática. Ajuste x = 17,89t² + 49,061t + 28,725, con R² = 0,999. Un recuadro resalta la ecuación.</desc>
+            </svg>
+          </div>
+          <figcaption>Figura 3. Posición del carrito en función del tiempo, con la ecuación del ajuste resaltada.</figcaption>
+        </figure>
+        <figure class="chart">
+          <div class="chart-scroll">
+            <svg viewBox="0 0 1100 280" class="mrua-chart" data-compare="mrua" role="img" aria-labelledby="g-cmp-t g-cmp-d">
+              <title id="g-cmp-t">Comparación término por término entre la ecuación teórica y la empírica</title>
+              <desc id="g-cmp-d">Ecuación teórica x = ½at² + v₀t + x₀ sobre la ecuación empírica x = 17,89t² + 49,061t + 28,725. Un recuadro une ½a con 17,89; un hexágono une v₀ con 49,061; un óvalo une x₀ con 28,725.</desc>
+            </svg>
+          </div>
+          <figcaption>Cada par de términos equivalentes lleva la misma forma: recuadro, hexágono u óvalo.</figcaption>
+        </figure>
         <div class="bad"><span class="tag">✗ Evite esto</span><p>“Aquí está la gráfica. Como pueden ver, es una parábola y el R² es 0,999, entonces está bien.”</p></div>
-        <div class="good"><span class="tag">✓ Mejor así</span><p>“La Figura 2 muestra la posición <em>x</em> del carrito, en metros, en función del tiempo <em>t</em>, en segundos. Cada punto es el promedio de cinco lanzamientos. La curva es un ajuste polinomial de grado 2, porque el modelo de MRUA predice <em>x</em> = <em>x</em><sub>0</sub> + <em>v</em><sub>0</sub><em>t</em> + ½<em>at</em>². Los puntos siguen la parábola (R² = 0,999). El coeficiente de <em>t</em>², 0,412 m/s², es la mitad de la aceleración, así que <em>a</em> = 0,824 m/s². El término lineal, 0,003 m/s, es prácticamente cero, lo que confirma que el carrito partió del reposo. La aceleración esperada para una inclinación de 5°, <em>g</em> sen θ, es 0,852 m/s²; nuestro valor es 3,3 % menor.”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“La Figura 3 muestra la posición de la fotocelda 2, en centímetros, en función del tiempo que tardó el carrito en llegar hasta ella, en segundos. Como el carrito realiza un MRUA, la relación teórica entre posición y tiempo es cuadrática; por eso usamos un ajuste polinómico de grado 2. Si comparamos término por término, el coeficiente de <em>t</em>², en el recuadro, es la mitad de la aceleración, así que <em>a</em> = 35,78 cm/s². El coeficiente de <em>t</em>, en el hexágono, es la rapidez inicial: 49,061 cm/s. El término independiente, en el óvalo, es la posición inicial: 28,725 cm. En el montaje esa posición era de 30 cm, lo que da un error de 4,25 %.”</p></div>
       </div>
     </details>
+
     <details class="example">
-      <summary>Ejemplo breve: significado de los parámetros (péndulo simple)</summary>
+      <summary>Ejemplo: interpretar la pendiente de un ajuste (carrito con MRUA)</summary>
       <div class="ex-body">
-        <p>En la gráfica de <em>T</em>² contra <em>L</em>, la pendiente vale 4π²/<em>g</em> y el intercepto debería ser cero. Diga qué parámetro usó para obtener <em>g</em> y qué significa un intercepto distinto de cero (por ejemplo, que la longitud no se midió hasta el centro de la esfera).</p>
+        <figure class="chart">
+          <div class="chart-scroll">
+            <svg viewBox="0 0 1000 560" class="mrua-chart" data-chart="acel" data-highlight="eq:1" data-color="amarillo" role="img" aria-labelledby="g-ac1-t g-ac1-d">
+              <title id="g-ac1-t">Aceleración del carrito en función del tiempo, con la pendiente del ajuste resaltada</title>
+              <desc id="g-ac1-d">Cinco puntos entre 0,21 s y 0,81 s, con aceleraciones entre 44,6 y 46,5 centímetros por segundo al cuadrado, casi en línea horizontal. Ajuste lineal a = −2,4435t + 46,782, con R² = 0,6731. Un recuadro resalta la pendiente.</desc>
+            </svg>
+          </div>
+          <figcaption>Figura 4. Aceleración del carrito en función del tiempo, con la pendiente del ajuste resaltada.</figcaption>
+        </figure>
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>“La pendiente es −2,4435, entonces la aceleración va disminuyendo.”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p><span class="stage">(Señalando el recuadro)</span> “La Figura 4 muestra la aceleración del carrito, en cm/s², en función del tiempo, en segundos. La pendiente del ajuste es −2,44 cm/s³, prácticamente cero: en todo el intervalo, la aceleración cambia apenas 1,5 cm/s², cerca de un 3 % de su valor. Por eso concluimos que la aceleración se mantiene constante, como predice el modelo de MRUA, con un valor promedio de 45,5 cm/s².”</p></div>
       </div>
     </details>
   </section>
 
-  <!-- ============ 6 ============ -->
-  <section class="card" id="s6" data-title="Magnitudes">
-    <h2><span class="num">6</span><span class="title">Cómo comunicar una magnitud</span><span class="count"></span></h2>
+  <!-- ============ 4.3 ============ -->
+  <section class="card" id="s4-3" data-title="Magnitudes">
+    <h2><span class="num">4.3</span><span class="title">Cómo comunicar una magnitud</span><span class="count"></span></h2>
     <div class="terms">
       <dl>
         <dt>Incertidumbre</dt>
         <dd>El intervalo de duda de <em>su</em> medición. Se debe a la resolución de los instrumentos y a la variación entre repeticiones. Se escribe con ±.</dd>
         <dt>Error (porcentaje de error)</dt>
         <dd>Cuánto se aleja su valor del valor de referencia: |experimental − referencia| / referencia × 100 %.</dd>
-        <dt>Discrepancia</dt>
-        <dd>La diferencia |experimental − referencia|. Si es menor que la incertidumbre combinada, los dos valores son <strong>compatibles</strong>.</dd>
         <dt>Cifras significativas</dt>
         <dd>Los dígitos que tienen sentido según la incertidumbre.</dd>
       </dl>
     </div>
     <ul class="checklist">
       <li><label><input type="checkbox"><span>Reporte la magnitud como <strong>(valor ± incertidumbre) unidad</strong>.</span></label></li>
-      <li><label><input type="checkbox"><span>La incertidumbre tiene 1 o 2 cifras significativas, y el valor está redondeado en la misma posición decimal.</span></label></li>
-      <li><label><input type="checkbox"><span>El valor y la incertidumbre usan la misma potencia de diez y la misma unidad.</span></label></li>
+      <li><label><input type="checkbox"><span>La incertidumbre tiene 2 cifras significativas, y el valor está redondeado en la misma posición decimal.</span></label></li>
+      <li><label><input type="checkbox"><span>En valores con notación científica, asegúrese de que el valor y la incertidumbre usen la misma potencia de diez y la misma unidad.</span></label></li>
       <li><label><input type="checkbox"><span>Diga la unidad en voz alta.</span></label></li>
-      <li><label><input type="checkbox"><span>Mencione el valor de referencia y de dónde sale (la geometría de la polea, la <em>g</em> local o una medición directa).</span></label></li>
-      <li><label><input type="checkbox"><span>Dé el porcentaje de error con pocas cifras (por ejemplo, 7,3 %, no 7,4771 %).</span></label></li>
-      <li><label><input type="checkbox"><span>Diga qué significa la comparación: si los valores son compatibles con su incertidumbre o no.</span></label></li>
-      <li><label><input type="checkbox"><span>Diga el resultado completo una vez. Después puede referirse a él como “el valor experimental”.</span></label></li>
+      <li><label><input type="checkbox"><span>Mencione el valor de referencia (valor teórico) y de dónde sale: el valor de la gravedad en el laboratorio dado en la práctica, la medición directa de la magnitud o una suposición del modelo teórico (como que la rapidez inicial es cero), entre otros.</span></label></li>
+      <li><label><input type="checkbox"><span>Dé el porcentaje de error con pocas cifras (por ejemplo, 4,25 %, no 4,24772 %).</span></label></li>
+      <li><label><input type="checkbox"><span>Diga qué significa la comparación: si el porcentaje de error está dentro del criterio aceptable de la práctica (por ejemplo, 5 %).</span></label></li>
+      <li><label><input type="checkbox"><span>Diga el resultado completo una vez. Después puede referirse a este como “el valor experimental”.</span></label></li>
     </ul>
     <details class="example">
-      <summary>Ejemplo: comunicar la aceleración de la gravedad (péndulo simple)</summary>
+      <summary>Ejemplo: comunicar la posición inicial (carrito con MRUA)</summary>
       <div class="ex-body">
-        <div class="bad"><span class="tag">✗ Evite esto</span><p>“Nos dio una gravedad de 9,6312847 y la teórica es 9,8, o sea, un error de 1,7216 %, que es bajito, así que está bien.”</p></div>
-        <div class="good"><span class="tag">✓ Mejor así</span><p>“La aceleración de la gravedad experimental es (9,63 ± 0,04) m/s². El valor de referencia para el laboratorio es (9,7774 ± 0,0010) m/s². El porcentaje de error es 1,5 %. La diferencia, 0,15 m/s², es unas cuatro veces mayor que la incertidumbre combinada, así que no se explica solo por la incertidumbre de las mediciones: hay un efecto que el modelo no considera.”</p></div>
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>“Nos dio una posición inicial de 28,725684 cm y la teórica es 30 cm, o sea, un error de 4,24772 %, que es bajito, así que está bien.”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“La posición inicial experimental es (28,73 ± 0,11) cm. El valor de referencia es el medido en el montaje: (30,000 ± 0,029) cm. El porcentaje de error es 4,23 %. Como el criterio de la práctica acepta hasta un 5 %, el resultado es satisfactorio.”</p></div>
       </div>
     </details>
   </section>
 
-  <!-- ============ 7 ============ -->
-  <section class="card" id="s7" data-title="Diferencias con la teoría">
-    <h2><span class="num">7</span><span class="title">Cómo explicar diferencias con la teoría</span><span class="count"></span></h2>
+  <!-- ============ 4.4 ============ -->
+  <section class="card" id="s4-4" data-title="Fuentes de error">
+    <h2><span class="num">4.4</span><span class="title">Cómo explicar las fuentes de error</span><span class="count"></span></h2>
     <ul class="checklist">
       <li><label><input type="checkbox"><span>Nombre fuentes de error <strong>concretas de su montaje</strong>. No use “error humano”, “errores de medición” ni “el equipo estaba malo”.</span></label></li>
-      <li><label><input type="checkbox"><span>Diga en qué dirección afecta cada fuente: si hace el resultado mayor o menor. Compruebe que esa dirección coincide con la de su diferencia.</span></label></li>
-      <li><label><input type="checkbox"><span>Estime cuánto afecta, aunque sea de forma aproximada, usando la ecuación del modelo.</span></label></li>
-      <li><label><input type="checkbox"><span>Distinga la incertidumbre (límite de los instrumentos y variación entre repeticiones) del error sistemático (un supuesto que no se cumple, como la fricción).</span></label></li>
-      <li><label><input type="checkbox"><span>Si la diferencia es menor que la incertidumbre, dígalo así. No hace falta buscar otra causa.</span></label></li>
-      <li><label><input type="checkbox"><span>Si no midió el efecto, preséntelo como hipótesis: “una posible causa es…”.</span></label></li>
-      <li><label><input type="checkbox"><span>Explique bien una o dos causas principales. Es mejor que mencionar cinco sin argumentar.</span></label></li>
+      <li><label><input type="checkbox"><span>Diga si se espera que esa fuente de error haga el resultado mayor o menor, y comente si eso se observó en sus resultados.</span></label></li>
+      <li><label><input type="checkbox"><span>Distinga entre los tipos de incertidumbre (la asociada al instrumento y la asociada a la variación entre repeticiones) y el error sistemático (un supuesto que no se cumple, como la fricción).</span></label></li>
+      <li><label><input type="checkbox"><span>Si no midió el efecto de alguna fuente de error, preséntelo como hipótesis: “una posible causa es…”.</span></label></li>
+      <li><label><input type="checkbox"><span>Explique bien una o dos causas principales de la diferencia entre sus resultados y lo esperado según el modelo. Es mejor que mencionar cinco sin argumentar.</span></label></li>
     </ul>
-
-    <h3>Fuentes concretas por práctica (puntos de partida)</h3>
-    <ul>
-      <li><strong>P1:</strong> resistencia del aire, tabla de madera no del todo vertical, cañón que cambia de ángulo después de varios disparos, y el tiempo de la ecuación 9, que supone rapidez horizontal constante.</li>
-      <li><strong>P2:</strong> fricción en las ruedas, energía de rotación de las ruedas (no está incluida en <em>mv</em>²/2), cambio del ángulo de la pista por vibraciones y punto de salida que no siempre es el mismo.</li>
-      <li><strong>P3:</strong> fricción en el eje de la polea, cuerda mal enrollada o con grosor no despreciable, y masa que no parte del reposo o desde la misma altura.</li>
-    </ul>
-
     <details class="example">
-      <summary>Ejemplo: explicar la diferencia en la aceleración de la gravedad (péndulo simple)</summary>
+      <summary>Ejemplo: explicar por qué la aceleración no fue constante (carrito con MRUA)</summary>
       <div class="ex-body">
-        <div class="bad"><span class="tag">✗ Evite esto</span><p>“La diferencia se debe a errores humanos y a que los instrumentos no son exactos.”</p></div>
-        <div class="good"><span class="tag">✓ Mejor así</span><p>“Nuestro valor es 1,5 % menor que el de referencia. La causa más probable es la amplitud: soltamos el péndulo desde unos 20°, y el modelo supone amplitudes pequeñas. Con amplitudes mayores el periodo se alarga, y como <em>g</em> = 4π²<em>L</em>/<em>T</em>², un periodo más largo da un <em>g</em> menor. Esa es la dirección que observamos. Para 20°, el periodo real es cerca de 0,8 % más largo que el del modelo, lo que reduce <em>g</em> en 1,5 %: explica toda la diferencia. En cambio, el tiempo de respuesta de la fotocompuerta es del orden de microsegundos, así que no explica una diferencia de este tamaño.”</p></div>
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>“La aceleración no fue constante, y esto se debe a errores humanos y a que los instrumentos no son exactos.”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“El coeficiente de variación de nuestra aceleración es 8,25 %, así que no podemos considerarla constante. La causa más probable es la fricción, tanto en el riel neumático como en la polea: el modelo la desprecia en ambos casos. Como la aceleración disminuyó conforme aumentaba la distancia, es probable que la fricción influyera más a medida que aumentaba el recorrido.”</p></div>
       </div>
     </details>
   </section>
 
-  <!-- ============ 8 ============ -->
-  <section class="card" id="s8" data-title="Conclusiones">
-    <h2><span class="num">8</span><span class="title">Cómo plantear conclusiones vinculadas a los objetivos</span><span class="count"></span></h2>
+  <!-- ============ 5 ============ -->
+  <section class="card" id="s5" data-title="Conclusiones y recomendaciones">
+    <h2><span class="num">5</span><span class="title">Cómo plantear conclusiones y recomendaciones</span><span class="count"></span></h2>
+    <h3>Conclusiones vinculadas a los objetivos</h3>
     <ul class="checklist">
       <li><label><input type="checkbox"><span>Hay una conclusión por cada objetivo, en el mismo orden en que se presentaron.</span></label></li>
       <li><label><input type="checkbox"><span>Cada conclusión dice si el objetivo se cumplió y en qué medida.</span></label></li>
@@ -464,79 +562,100 @@
       <li><label><input type="checkbox"><span>Si un objetivo se cumplió solo en parte, se dice y se explica por qué.</span></label></li>
     </ul>
     <details class="example">
-      <summary>Ejemplo: conclusión ligada a un objetivo (constante de un resorte)</summary>
+      <summary>Ejemplo: conclusión ligada a un objetivo (carrito con MRUA)</summary>
       <div class="ex-body">
-        <div class="bad"><span class="tag">✗ Evite esto</span><p>“En conclusión, se cumplieron todos los objetivos y los dos métodos dan lo mismo, como dice la teoría.”</p></div>
-        <div class="good"><span class="tag">✓ Mejor así</span><p>“Sobre el segundo objetivo: los dos métodos dan valores compatibles para la constante del resorte. El método estático da (22,8 ± 0,6) N/m y el dinámico, (23,1 ± 0,2) N/m. Su diferencia, 0,3 N/m, es menor que la incertidumbre combinada, 0,6 N/m. Por lo tanto, ambos métodos miden la misma constante en este rango de masas.”</p></div>
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>“En conclusión, se cumplieron todos los objetivos y la aceleración sí se mantuvo constante, como dice la teoría.”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“Sobre el segundo objetivo específico: la aceleración medida se mantuvo constante. Su coeficiente de variación fue 1,8 %, menor que el criterio de 5 % de la guía. Por lo tanto, en las condiciones del experimento, el carrito sí realizó un MRUA.”</p></div>
       </div>
     </details>
-  </section>
 
-  <!-- ============ 9 ============ -->
-  <section class="card" id="s9" data-title="Recomendaciones">
-    <h2><span class="num">9</span><span class="title">Cómo plantear recomendaciones</span><span class="count"></span></h2>
+    <h3>Recomendaciones</h3>
     <ul class="checklist">
+      <li><label><input type="checkbox"><span>Dé recomendaciones concretas, por ejemplo qué cambiar para reducir la fuente de error principal.</span></label></li>
       <li><label><input type="checkbox"><span>Cada recomendación atiende una fuente de error o una limitación que identificó en su análisis.</span></label></li>
-      <li><label><input type="checkbox"><span>Cada recomendación dice qué cambiar y qué mejora se espera, por ejemplo qué error se reduciría.</span></label></li>
-      <li><label><input type="checkbox"><span>Son pocas (una o dos) y se pueden hacer con el equipo del laboratorio.</span></label></li>
+      <li><label><input type="checkbox"><span>Cada recomendación dice qué mejora se espera, por ejemplo qué error se reduciría.</span></label></li>
       <li><label><input type="checkbox"><span>Evite recomendaciones genéricas como “tener más cuidado” o “medir mejor”.</span></label></li>
     </ul>
     <details class="example">
-      <summary>Ejemplo: plantear una recomendación (péndulo simple)</summary>
+      <summary>Ejemplo: plantear una recomendación (carrito con MRUA)</summary>
       <div class="ex-body">
         <div class="bad"><span class="tag">✗ Evite esto</span><p>“Se recomienda tener más cuidado al medir y repetir el experimento.”</p></div>
-        <div class="good"><span class="tag">✓ Mejor así</span><p>“Recomendamos soltar el péndulo con una amplitud menor de 10°. Con 20°, el periodo sale cerca de un 0,8 % más largo, y eso explica la diferencia en <em>g</em>.”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“Recomendamos verificar que el riel neumático esté nivelado y que el flujo de aire sea uniforme, y usar una polea de baja fricción. Así se reduciría la disminución de la aceleración que observamos al aumentar la distancia.”</p></div>
       </div>
     </details>
   </section>
 
-  <!-- ============ 10 ============ -->
-  <section class="card" id="s10" data-title="Apoyo visual">
-    <h2><span class="num">10</span><span class="title">Uso del apoyo visual</span><span class="count"></span></h2>
+  <!-- ============ 6 ============ -->
+  <section class="card" id="s6" data-title="Uso de IA">
+    <h2><span class="num">6</span><span class="title">Declaración de uso de IA</span><span class="count"></span></h2>
+    <ul class="checklist">
+      <li><label><input type="checkbox"><span>Si usaron IA generativa para preparar la presentación, después de las recomendaciones agregaron una diapositiva con la declaración de uso que corresponda.</span></label></li>
+    </ul>
+  </section>
+
+  <!-- ============ 7 ============ -->
+  <section class="card" id="s7" data-title="Apoyo visual">
+    <h2><span class="num">7</span><span class="title">Uso del apoyo visual</span><span class="count"></span></h2>
     <ul class="checklist">
       <li><label><input type="checkbox"><span>Hay como máximo unas 8 a 10 diapositivas para 10 minutos (alrededor de una por minuto).</span></label></li>
       <li><label><input type="checkbox"><span>El texto es breve: palabras clave, sin párrafos, y no más de unas 6 líneas por diapositiva.</span></label></li>
-      <li><label><input type="checkbox"><span>La letra se lee desde el fondo del aula: al menos 24 pt en el texto y 18 pt en los ejes y las leyendas.</span></label></li>
+      <li><label><input type="checkbox"><span>El tamaño de la letra permite leer desde el fondo del aula: al menos 24 pt en el texto y 18 pt en los ejes y las leyendas.</span></label></li>
+      <li><label><input type="checkbox"><span>La presentación tiene alto contraste entre texto y fondo, porque en el aula hay mucha luz y la proyección se ve en colores muy claros.</span></label></li>
       <li><label><input type="checkbox"><span>Las gráficas tienen ejes con magnitud y unidad.</span></label></li>
       <li><label><input type="checkbox"><span>La ecuación del ajuste usa los símbolos de las variables graficadas.</span></label></li>
       <li><label><input type="checkbox"><span>No quedan textos que Excel pone por defecto, como “Serie1” o “Título del gráfico”.</span></label></li>
-      <li><label><input type="checkbox"><span>Las series se distinguen por <strong>marca y tipo de línea</strong> (círculo, triángulo, línea punteada), no solo por color.</span></label></li>
-      <li><label><input type="checkbox"><span>Hay buen contraste. El rojo y el verde nunca son la única diferencia entre series.</span></label></li>
-      <li><label><input type="checkbox"><span>En cada tabla, el valor importante está resaltado con un recuadro.</span></label></li>
+      <li><label><input type="checkbox"><span>Las series se distinguen por <strong>marca y tipo de línea</strong> (círculo, triángulo, línea punteada), no solo por color. Esto ayuda a las personas con dificultad para distinguir colores y facilita su explicación.</span></label></li>
+      <li><label><input type="checkbox"><span>En cada tabla, el valor importante está resaltado con un recuadro, un cambio de color u otro distintivo.</span></label></li>
+      <li><label><input type="checkbox"><span>Si quiere que el público mire una parte de la gráfica (un parámetro, un punto o una zona), resáltela con un recuadro o una flecha, además de señalarla.</span></label></li>
       <li><label><input type="checkbox"><span>Las figuras y las tablas están numeradas para decir “en la Figura 3”. Las diapositivas también, para ubicarlas rápido en las preguntas.</span></label></li>
       <li><label><input type="checkbox"><span>Las imágenes que no son propias indican su fuente.</span></label></li>
       <li><label><input type="checkbox"><span>Al explicar una gráfica, señálela y mire al público, no a la pantalla.</span></label></li>
       <li><label><input type="checkbox"><span><strong>No lea la diapositiva.</strong> Si lo que va a decir ya está escrito completo en ella, sobra texto.</span></label></li>
     </ul>
     <details class="example">
-      <summary>Ejemplo: diapositiva de un resultado (péndulo simple)</summary>
+      <summary>Ejemplo: diapositiva de un resultado (carrito con MRUA)</summary>
       <div class="ex-body">
-        <div class="bad"><span class="tag">✗ Evite esto</span><p>Un párrafo como “Se obtuvo que la aceleración de la gravedad mediante el ajuste lineal fue de 9,6312847 m/s^2 con una incertidumbre de…”, junto a un gráfico de Excel con la leyenda “Serie1”.</p></div>
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>Un párrafo como “Se obtuvo de la gráfica y su ecuación que la aceleración experimental es de 35,78 cm/s² con una incertidumbre de…”.</p></div>
         <div class="good"><span class="tag">✓ Mejor así</span>
           <div class="slide-mock">
-            <strong>Aceleración de la gravedad: experimental vs. referencia</strong>
+            <strong>Aceleración: experimental vs. referencia</strong>
             <div class="box">
-              <em>g</em><sub>exp</sub> = (9,63 ± 0,04) m/s²<br>
-              <em>g</em><sub>ref</sub> = (9,7774 ± 0,0010) m/s²<br>
-              Error: 1,5 %
+              <em>a</em><sub>exp</sub> = (35,78 ± 0,03) cm/s²<br>
+              <em>a</em><sub>ref</sub> = (37,37 ± 0,02) cm/s²<br>
+              Porcentaje de error: 4,25 %
             </div>
           </div>
           <p style="margin-top:6px">La explicación la da usted en voz alta.</p>
         </div>
       </div>
     </details>
+    <details class="example">
+      <summary>Ejemplo: resaltar una parte de la gráfica (carrito con MRUA)</summary>
+      <div class="ex-body">
+        <figure class="chart">
+          <div class="chart-scroll">
+            <svg viewBox="0 0 1000 560" class="mrua-chart" data-chart="acel" data-highlight="r2" data-color="verde" role="img" aria-labelledby="g-ac2-t g-ac2-d">
+              <title id="g-ac2-t">Aceleración del carrito en función del tiempo, con el coeficiente de determinación resaltado</title>
+              <desc id="g-ac2-d">La misma gráfica de aceleración contra tiempo. Un recuadro resalta el valor R² = 0,6731.</desc>
+            </svg>
+          </div>
+          <figcaption>Figura 4. Aceleración del carrito en función del tiempo, con el coeficiente de determinación resaltado.</figcaption>
+        </figure>
+        <div class="bad"><span class="tag">✗ Evite esto</span><p>Mostrar la gráfica tal como sale de Excel, señalar la pantalla de lejos y decir: “Como pueden ver aquí, el R² salió bajo…”, sin que el público sepa qué número mirar.</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p><span class="stage">(Con el R² resaltado en la diapositiva y señalándolo)</span> “Aquí resaltamos el R², que es 0,67. Parece bajo, pero en este caso no indica un mal ajuste: como la aceleración casi no cambia, no hay una tendencia que la recta pueda explicar, y las pequeñas variaciones entre puntos pesan más. Lo que importa es que la pendiente es prácticamente cero.”</p></div>
+      </div>
+    </details>
   </section>
 
-  <!-- ============ 11 ============ -->
-  <section class="card" id="s11" data-title="Ensayo y consejos">
-    <h2><span class="num">11</span><span class="title">Ensayo y consejos para una buena exposición</span><span class="count"></span></h2>
+  <!-- ============ 8 ============ -->
+  <section class="card" id="s8" data-title="Ensayo y consejos">
+    <h2><span class="num">8</span><span class="title">Ensayo y consejos para una buena exposición</span><span class="count"></span></h2>
 
     <h3>Preparación y lectura</h3>
     <ul class="checklist">
-      <li><label><input type="checkbox"><span>Prepare un guion con palabras clave para su parte, no un texto completo para memorizar.</span></label></li>
-      <li><label><input type="checkbox"><span>Haga la prueba sin diapositivas: si puede explicar su parte sin mirarlas, no las va a leer.</span></label></li>
-      <li><label><input type="checkbox"><span>Memorice solo la primera y la última frase de su parte.</span></label></li>
-      <li><label><input type="checkbox"><span>Ensaye en voz alta al menos dos veces por su cuenta y una vez con todo el equipo.</span></label></li>
+      <li><label><input type="checkbox"><span>Preparen un guion con palabras clave, no un texto completo para memorizar. Recuerden que todas las personas deben conocer el contenido completo de la exposición.</span></label></li>
+      <li><label><input type="checkbox"><span>Hagan la prueba sin diapositivas: si cada persona puede explicar sus aportes sin mirar la presentación, al exponer no la va a leer.</span></label></li>
+      <li><label><input type="checkbox"><span>Ensaye en voz alta al menos dos veces por su cuenta y una vez con todo el equipo. Controle el tiempo en los ensayos: es un aspecto que se evalúa.</span></label></li>
     </ul>
 
     <h3>Muletillas</h3>
@@ -550,36 +669,36 @@
     <h3>Argumentación y lenguaje</h3>
     <ul class="checklist">
       <li><label><input type="checkbox"><span>Respalde cada afirmación con un dato: no diga “es menor”, diga “es 3 % menor”.</span></label></li>
-      <li><label><input type="checkbox"><span>Use el término técnico correcto: “momento de inercia”, no “la inercia esa”; “rapidez”, no “velocidad”, cuando se habla solo de la magnitud.</span></label></li>
+      <li><label><input type="checkbox"><span>Use el término técnico correcto: “la masa del carrito es…”, no “el peso es…”; “se usó una fotocelda”, no “se usó el sensor…”; “rapidez”, no “velocidad”, cuando se habla solo de la magnitud.</span></label></li>
     </ul>
 
     <h3>Tiempo</h3>
     <ul class="checklist">
       <li><label><input type="checkbox"><span>El ensayo con todo el equipo se cronometró y duró como máximo 9 minutos, para dejar margen.</span></label></li>
       <li><label><input type="checkbox"><span>Cada persona sabe qué omitir si va atrasada.</span></label></li>
-      <li><label><input type="checkbox"><span>Si se atrasa, recorte su propia parte y no el tiempo de la siguiente persona.</span></label></li>
+      <li><label><input type="checkbox"><span>Si se atrasa, acorte su propia participación y no el tiempo de la siguiente persona.</span></label></li>
       <li><label><input type="checkbox"><span>El equipo acordó una señal discreta para avisar a quien se está pasando del tiempo.</span></label></li>
     </ul>
 
     <h3>Durante la exposición</h3>
     <ul class="checklist">
       <li><label><input type="checkbox"><span>Hable hacia el público, con volumen suficiente para el fondo del aula, y mantenga contacto visual.</span></label></li>
-      <li><label><input type="checkbox"><span>Mientras exponen sus compañeros, permanezca atento (sin celular ni notas) y haga sus aportes en el momento que acordó el equipo.</span></label></li>
-      <li><label><input type="checkbox"><span>La presentación se probó en el equipo del aula y hay una copia en PDF de respaldo.</span></label></li>
+      <li><label><input type="checkbox"><span>Mientras exponen las otras personas del equipo, permanezca atento(a), sin celular ni notas, y haga sus aportes en el momento que acordó el equipo.</span></label></li>
+      <li><label><input type="checkbox"><span>Todas las personas del equipo tienen una copia descargada de la presentación, y hay una copia en PDF en una memoria USB como respaldo, para acceder a ella rápido.</span></label></li>
     </ul>
 
     <details class="example">
       <summary>Ejemplo: inicio de una intervención</summary>
       <div class="ex-body">
         <div class="bad"><span class="tag">✗ Evite esto</span><p>“Eh… bueno, este, entonces aquí, eh, tenemos la gráfica…”</p></div>
-        <div class="good"><span class="tag">✓ Mejor así</span><p><span class="stage">(Pausa de un segundo, mirando al público)</span> “La Figura 2 muestra la posición del carrito en función del tiempo.”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p><span class="stage">(Pausa de un segundo, mirando al público)</span> “La Figura 3 muestra la posición del carrito en función del tiempo, en su recorrido de la fotocelda 1 a la fotocelda 2.”</p></div>
       </div>
     </details>
   </section>
 
-  <!-- ============ 12 ============ -->
-  <section class="card" id="s12" data-title="Preguntas">
-    <h2><span class="num">12</span><span class="title">Cómo responder preguntas</span><span class="count"></span></h2>
+  <!-- ============ 9 ============ -->
+  <section class="card" id="s9" data-title="Preguntas">
+    <h2><span class="num">9</span><span class="title">Cómo responder preguntas</span><span class="count"></span></h2>
     <ul class="checklist">
       <li><label><input type="checkbox"><span>Escuche la pregunta completa sin interrumpir y tómese 2 o 3 segundos para pensar.</span></label></li>
       <li><label><input type="checkbox"><span>Si no la entendió, pida que la repitan o reformúlela: “¿Se refiere a…?”.</span></label></li>
@@ -588,23 +707,17 @@
       <li><label><input type="checkbox"><span>Si no sabe la respuesta, dígalo con honestidad y ofrezca lo que sí sabe o cómo lo averiguaría. No invente.</span></label></li>
       <li><label><input type="checkbox"><span>Responda en un minuto o menos.</span></label></li>
       <li><label><input type="checkbox"><span>El equipo preparó respuestas para preguntas probables: por qué ese ajuste, por qué ese método, cuál fue la fuente de error principal y qué cambiarían.</span></label></li>
+      <li><label><input type="checkbox"><span>Si a otra persona del equipo le cuesta responder una pregunta, no la interrumpa. Respete su tiempo; cuando termine o diga que no puede responder, puede pedirle permiso a la persona docente para aportar a la respuesta.</span></label></li>
     </ul>
     <details class="example">
-      <summary>Ejemplo: responder una pregunta (constante de un resorte)</summary>
+      <summary>Ejemplo: responder una pregunta (carrito con MRUA)</summary>
       <div class="ex-body">
-        <p class="q">Pregunta: “¿Por qué confían más en el método dinámico?”</p>
+        <p class="q">Pregunta: “¿Por qué usaron la rapidez directa y no la indirecta para calcular la aceleración?”</p>
         <div class="bad"><span class="tag">✗ Evite esto</span><p>“Eh… porque así lo decía la guía, creo.”</p></div>
-        <div class="good"><span class="tag">✓ Mejor así</span><p>“Porque su incertidumbre es menor. En la Tabla 2, la constante dinámica es (23,1 ± 0,2) N/m y la estática, (22,8 ± 0,6) N/m. El periodo se mide con la fotocompuerta promediando diez oscilaciones, mientras que la elongación se lee en una regla con resolución de 1 mm.”</p></div>
-        <div class="good"><span class="tag">✓ Si no lo sabe</span><p>“No lo medimos, así que no podemos asegurarlo. Nuestra hipótesis es que…, y se podría comprobar…”</p></div>
+        <div class="good"><span class="tag">✓ Mejor así</span><p>“Porque es más precisa. En la Tabla 2, la incertidumbre de la rapidez directa es 0,004 m/s y la de la indirecta, 0,02 m/s. Así, la aceleración calculada también queda con menor incertidumbre.”</p></div>
+        <div class="good"><span class="tag">✓ Si no lo sabe</span><p>“No recuerdo la razón exacta por la que la escogimos. Sí sé que, para elegir entre dos valores, hay que considerar su incertidumbre: siempre se prefiere el que tenga menor incertidumbre.”</p></div>
       </div>
     </details>
-  </section>
-
-  <!-- ============ 13 ============ -->
-  <section class="card info" id="s13" data-title="Qué se evaluará">
-    <h2><span class="num">13</span><span class="title">Qué se evaluará</span></h2>
-    <p>En la exposición se valorará <strong>de forma individual</strong> cómo comunica cada persona su parte, sin importar qué sección le haya tocado. Se tomará en cuenta la fluidez, la claridad, el orden y la calidad de la argumentación, es decir, que sus afirmaciones se apoyen en datos. También cuentan el manejo del tiempo, el uso del apoyo visual sin leerlo y la respuesta a las preguntas. Además, se pueden valorar aspectos del equipo, como que la exposición tenga la estructura completa y la calidad de las diapositivas.</p>
-    <p>Recuerde que, según la consigna, quien base la mayor parte de su exposición en la lectura recibe la calificación mínima. Los criterios exactos se darán a conocer con la rúbrica.</p>
   </section>
 
 </main>
@@ -612,14 +725,14 @@
 <footer>
   <div class="wrap">
     <p>Basada en la <em>Consigna para la presentación oral de un informe de laboratorio</em> (FI1201, Laboratorio de Física General I), en las guías de las prácticas 1, 2 y 3 y en la <em>Guía básica para la elaboración de un informe de laboratorio tipo artículo</em> (C. A. Jiménez Carballo y J. Sánchez Valle, Escuela de Física, TEC). Los ejemplos son casos ficticios con temas del curso.</p>
-    <p>Elaborada por Melania Campos Rodríguez y Esteban Pérez Hidalgo · Escuela de Física, Instituto Tecnológico de Costa Rica · 2026 · Versión en revisión.</p>
+    <p>Elaborada por Melania Campos Rodríguez y Esteban Pérez Hidalgo · Escuela de Física, Instituto Tecnológico de Costa Rica · 2026.</p>
     <p>Licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" rel="license noopener" target="_blank">CC BY-NC-SA 4.0</a>.</p>
   </div>
 </footer>
 
 <script>
 (function () {
-  var KEY = 'guia-exponer-resultados-lfg1-v2';
+  var KEY = 'guia-exponer-resultados-lfg1-v3';
   var KEY_EX = KEY + '-ocultar-ejemplos';
 
   function read(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -645,7 +758,7 @@
     var li = document.createElement('li');
     var a = document.createElement('a');
     a.href = '#' + sec.id;
-    a.textContent = num + '. ' + (sec.dataset.title || '');
+    a.textContent = num + (num.indexOf('.') >= 0 ? ' ' : '. ') + (sec.dataset.title || '');
     a.id = 'toc-' + sec.id;
     li.appendChild(a);
     toc.appendChild(li);
@@ -726,7 +839,8 @@
       if (!boxes.length) return;
       var c = 0;
       Array.prototype.forEach.call(boxes, function (b) { if (b.checked) c++; });
-      lines.push(sec.querySelector('.num').textContent + '. ' + clean(sec.querySelector('.title').textContent) + ' (' + c + '/' + boxes.length + ')');
+      var nn = sec.querySelector('.num').textContent;
+      lines.push(nn + (nn.indexOf('.') >= 0 ? ' ' : '. ') + clean(sec.querySelector('.title').textContent) + ' (' + c + '/' + boxes.length + ')');
       Array.prototype.forEach.call(boxes, function (b) {
         var span = b.nextElementSibling.cloneNode(true);
         var sub = span.querySelector('ul');
@@ -756,6 +870,153 @@
     openedForPrint.forEach(function (d) { d.open = false; });
   });
   document.getElementById('btn-print').addEventListener('click', function () { window.print(); });
+})();
+</script>
+<script>
+// ===== Gráficas de ejemplo (carrito con MRUA) =====
+// Para cambiar datos o textos de una gráfica, edite GRAFICAS.
+(function () {
+  var NS = 'http://www.w3.org/2000/svg';
+  var GRAFICAS = {
+    acel: {
+      titulo: ['Relación de la aceleración con el tiempo para un carrito en un', 'MRUA'],
+      ejeY: 'Aceleración (cm/s²)', ymax: 50, ypaso: 5,
+      datos: [[0.211, 46.45], [0.386, 45.25], [0.531, 45.80], [0.673, 45.45], [0.809, 44.55]],
+      ajuste: function (t) { return -2.4435 * t + 46.782; },
+      ecuacion: ['a = ', '−2,4435t', ' + 46,782'], r2: 'R² = 0,6731'
+    },
+    pos: {
+      titulo: ['Relación de la posición con el tiempo para un carrito en un', 'MRUA'],
+      ejeY: 'Posición x (cm)', ymax: 90, ypaso: 10,
+      datos: [[0.211, 40], [0.386, 50], [0.531, 60], [0.673, 70], [0.809, 80]],
+      ajuste: function (t) { return 17.89 * t * t + 49.061 * t + 28.725; },
+      ecuacion: ['x = 17,89t² + 49,061t + 28,725'], r2: 'R² = 0,999'
+    }
+  };
+
+  var X0 = 110, X1 = 950, Y0 = 480, Y1 = 180, TMAX = 0.9;
+  function coma(n, d) { return n.toFixed(d).replace('.', ','); }
+
+  // SVG oculto para medir textos (funciona aunque el ejemplo esté cerrado)
+  var meter = document.createElementNS(NS, 'svg');
+  meter.setAttribute('class', 'mrua-chart');
+  meter.setAttribute('aria-hidden', 'true');
+  meter.style.cssText = 'position:absolute;left:-9999px;top:0;width:1000px;height:100px;visibility:hidden';
+  document.body.appendChild(meter);
+  function ancho(texto, clase) {
+    var t = document.createElementNS(NS, 'text');
+    t.setAttribute('class', clase);
+    t.textContent = texto;
+    meter.appendChild(t);
+    var w = t.getComputedTextLength();
+    meter.removeChild(t);
+    return w;
+  }
+  function creador(svg) {
+    return function (tag, attrs, texto) {
+      var e = document.createElementNS(NS, tag);
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+      if (texto != null) e.textContent = texto;
+      svg.appendChild(e);
+      return e;
+    };
+  }
+
+  function dibujarGrafica(svg) {
+    var g = GRAFICAS[svg.getAttribute('data-chart')];
+    if (!g) return;
+    var el = creador(svg);
+    function px(t) { return X0 + (X1 - X0) * t / TMAX; }
+    function py(v) { return Y0 - (Y0 - Y1) * v / g.ymax; }
+
+    el('rect', { x: 0, y: 0, width: 1000, height: 560, class: 'c-frame' });
+    for (var i = 0; i <= 9; i++) {
+      el('line', { x1: px(i / 10), x2: px(i / 10), y1: Y1, y2: Y0, class: 'c-grid' });
+      el('text', { x: px(i / 10), y: Y0 + 34, 'text-anchor': 'middle', class: 'c-tick' }, coma(i / 10, 3));
+    }
+    for (var v = 0; v <= g.ymax + 1e-9; v += g.ypaso) {
+      el('line', { x1: X0, x2: X1, y1: py(v), y2: py(v), class: 'c-grid' });
+      el('text', { x: X0 - 12, y: py(v) + 7, 'text-anchor': 'end', class: 'c-tick' }, coma(v, 1));
+    }
+    el('line', { x1: X0, x2: X1, y1: Y0, y2: Y0, class: 'c-axis' });
+    el('line', { x1: X0, x2: X0, y1: Y1, y2: Y0, class: 'c-axis' });
+
+    el('text', { x: 530, y: 50, 'text-anchor': 'middle', class: 'c-title' }, g.titulo[0]);
+    el('text', { x: 530, y: 86, 'text-anchor': 'middle', class: 'c-title' }, g.titulo[1]);
+    el('text', { x: 530, y: 548, 'text-anchor': 'middle', class: 'c-label' }, 'Tiempo (s)');
+    el('text', { x: 0, y: 0, 'text-anchor': 'middle', class: 'c-label', transform: 'translate(42 330) rotate(-90)' }, g.ejeY);
+
+    // Curva de ajuste (punteada) y puntos
+    var t1 = g.datos[0][0], t2 = g.datos[g.datos.length - 1][0], pts = [];
+    for (var k = 0; k <= 40; k++) { var t = t1 + (t2 - t1) * k / 40; pts.push(px(t).toFixed(1) + ',' + py(g.ajuste(t)).toFixed(1)); }
+    el('polyline', { points: pts.join(' '), class: 'c-trend' });
+    g.datos.forEach(function (d) { el('circle', { cx: px(d[0]), cy: py(d[1]), r: 9, class: 'c-point' }); });
+
+    // Ecuación (alineada a la derecha) y R² (centrado debajo)
+    var anchos = g.ecuacion.map(function (p) { return ancho(p, 'c-eq'); });
+    var total = anchos.reduce(function (a, b) { return a + b; }, 0);
+    var x = 945 - total, yEq = 128, cajas = [];
+    g.ecuacion.forEach(function (p, n) {
+      el('text', { x: x, y: yEq, class: 'c-eq' }, p);
+      cajas.push({ x: x, w: anchos[n] });
+      x += anchos[n];
+    });
+    var centro = 945 - total / 2, wR2 = ancho(g.r2, 'c-eq'), yR2 = 164;
+    el('text', { x: centro, y: yR2, 'text-anchor': 'middle', class: 'c-eq' }, g.r2);
+
+    // Resaltado: solo un recuadro grueso
+    var hl = svg.getAttribute('data-highlight') || '', pad = 9, h = 38;
+    if (hl.indexOf('eq:') === 0) {
+      var c = cajas[parseInt(hl.slice(3), 10)];
+      el('rect', { x: c.x - pad, y: yEq - 29, width: c.w + 2 * pad, height: h, rx: 8, class: 'c-hl ' + (svg.getAttribute('data-color') || 'amarillo') });
+    } else if (hl === 'r2') {
+      el('rect', { x: centro - wR2 / 2 - pad - 4, y: yR2 - 29, width: wR2 + 2 * pad + 8, height: h, rx: 8, class: 'c-hl ' + (svg.getAttribute('data-color') || 'verde') });
+    }
+  }
+
+  // Comparación término por término: ecuación teórica sobre la empírica.
+  // Cada par de términos equivalentes lleva la misma forma: recuadro, hexágono u óvalo.
+  function dibujarComparacion(svg) {
+    var el = creador(svg);
+    var cols = [
+      { t: 'x =', e: 'x =' },
+      { t: '½a', e: '17,89', forma: 'recuadro' },
+      { t: 't² +', e: 't² +' },
+      { t: 'v₀', e: '49,061', forma: 'hexagono' },
+      { t: 't +', e: 't +' },
+      { t: 'x₀', e: '28,725', forma: 'ovalo' }
+    ];
+    var gap = 50, yT = 100, yE = 200, alto = 46;
+    var anchoCol = cols.map(function (c) { return Math.max(ancho(c.t, 'c-cmp'), ancho(c.e, 'c-cmp')); });
+    var totalCols = anchoCol.reduce(function (a, b) { return a + b; }, 0) + gap * (cols.length - 1);
+    var x = 320 + (1040 - 320 - totalCols) / 2;
+    el('rect', { x: 0, y: 0, width: 1100, height: 280, class: 'c-frame' });
+    el('text', { x: 300, y: yT, 'text-anchor': 'end', class: 'c-cmp-label' }, 'Ecuación teórica:');
+    el('text', { x: 300, y: yE, 'text-anchor': 'end', class: 'c-cmp-label' }, 'Ecuación empírica:');
+    cols.forEach(function (c) {
+      var wt = ancho(c.t, 'c-cmp'), we = ancho(c.e, 'c-cmp'), w = Math.max(wt, we), cx = x + w / 2;
+      el('text', { x: cx, y: yT, 'text-anchor': 'middle', class: 'c-cmp' }, c.t);
+      el('text', { x: cx, y: yE, 'text-anchor': 'middle', class: 'c-cmp' }, c.e);
+      if (c.forma) {
+        [[yT, wt], [yE, we]].forEach(function (par) {
+          var cy = par[0] - 13, hw = par[1] / 2 + 12, hh = alto / 2;
+          if (c.forma === 'recuadro') {
+            el('rect', { x: cx - hw, y: cy - hh, width: 2 * hw, height: 2 * hh, rx: 10, class: 'c-shape morado' });
+          } else if (c.forma === 'hexagono') {
+            var pts = [[cx - hw - 14, cy], [cx - hw, cy - hh], [cx + hw, cy - hh], [cx + hw + 14, cy], [cx + hw, cy + hh], [cx - hw, cy + hh]];
+            el('polygon', { points: pts.map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' '), class: 'c-shape naranja' });
+          } else {
+            el('ellipse', { cx: cx, cy: cy, rx: hw + 10, ry: hh + 2, class: 'c-shape azul' });
+          }
+        });
+      }
+      x += w + gap;
+    });
+  }
+
+  document.querySelectorAll('svg[data-chart]').forEach(dibujarGrafica);
+  document.querySelectorAll('svg[data-compare]').forEach(dibujarComparacion);
+  meter.remove();
 })();
 </script>
 </body>
